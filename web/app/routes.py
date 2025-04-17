@@ -6,4 +6,3 @@ from flask import render_template
 def index():
     user = {'username': 'Miguel'}
     return render_template('index.html', title='Home', user=user)
-    
