@@ -3,13 +3,13 @@
 
 <head>
     <title>Sign-up</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login-signup-style.css">
 </head>
 
 <body>
     <div class="main">
         <h1><a href = "welcome-page.html" class="logo-link">FitTrack</a></h1>
-        <h3>Enter Sign-up credentials</h3>
+        <h3>Enter your sign-up credentials</h3>
 
         <form action="login.html" method="post">
             <label for="first">
@@ -24,18 +24,18 @@
             <input type="text" name="email" 
                 placeholder="Enter your Email" required>
 
-            <label for="first">
-                    Username:
-            </label>
-            <input type="text" name="username" 
-                placeholder="Enter your Username" required>
-
             <label for="password">
                     Password:
             </label>
             <input type="password" name="password" 
                     placeholder="Enter your Password" required>
-    
+
+            <label for="confirm-password">
+                    Confirm Password:
+            </label>
+            <input type="password" name="confirm-password" 
+                placeholder="Re-enter your Password" required>
+            
             <div class="wrap">
                 <button type="submit">
                     Submit
