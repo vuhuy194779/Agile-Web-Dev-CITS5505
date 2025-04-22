@@ -3,65 +3,85 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FitTrack - Track Your Fitness Journey</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" />
-    <script src="xxx.js"></script>
+    <title>TriTrack - Your Triathlon Journey Tracker</title>
+    <link rel="stylesheet" href="welcome-page.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="welcome-page.js"></script>
   </head>
-  <body class="bg-gray-50 font-sans">
-    <!-- Header/Navigation -->
-    <header class="bg-white shadow-sm">
-      <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
-        <div class="flex items-center">
-          <h1 class="text-2xl font-bold text-blue-600">FitTrack</h1>
-        </div>
-        <div class="hidden md:flex space-x-8">
-          <a href="#features" class="text-gray-700 hover:text-blue-600 transition">Features</a>
-          <a href="#how-it-works" class="text-gray-700 hover:text-blue-600 transition">How It Works</a>
-          <a href="#testimonials" class="text-gray-700 hover:text-blue-600 transition">Testimonials</a>
-        </div>
-        <div class="flex items-center space-x-4">
-          <button id="login-btn" class="px-4 py-2 text-blue-600 font-medium hover:bg-blue-50 rounded-md transition">Login</button>
-          <button id="signup-btn" class="px-4 py-2 bg-blue-600 text-white font-medium hover:bg-blue-700 rounded-md transition">Sign Up</button>
-        </div>
-        <button class="md:hidden focus:outline-none" id="mobile-menu-btn">
-          <svg class="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </nav>
-      <!-- Mobile Menu (Hidden by default) -->
-      <div class="md:hidden hidden" id="mobile-menu">
-        <div class="px-2 pt-2 pb-3 space-y-1">
-          <a href="#features" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">Features</a>
-          <a href="#how-it-works" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">How It Works</a>
-          <a href="#testimonials" class="block px-3 py-2 text-gray-700 hover:bg-blue-50 rounded-md">Testimonials</a>
+  <body>
+    <!-- Header with Navigation -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="/" class="logo" title="Go to homepage">Tri<span class="highlight">Track</span></a>
+          <button class="mobile-menu-btn">☰</button>
+          <nav>
+            <ul id="nav-menu">
+              <li><a href="#features">Features</a></li>
+              <li><a href="#how-it-works">How It Works</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+              <li><a href="#" id="login-btn">Login</a></li>
+            </ul>
+            <div id="modalOverlay"></div>
+
+            <div id="sign" class="sign">
+              <div class="part loginPart">
+                <form id="login" action="login.html" method="post" novalidate="novalidate">
+                  <div id="register-btn"><i class="fa fa-toggle-on"></i><a href="sign-up.html">Register now</a></div>
+                  <br />
+                  <h3>
+                    Login
+                    <p class="status"></p>
+                  </h3>
+                  <p>
+                    <label class="icon" for="username"><i class="fa fa-user"></i></label>
+                    <input
+                      class="input-control"
+                      id="username"
+                      type="text"
+                      placeholder="please enter your username"
+                      name="username"
+                      required=""
+                      aria-required="true" />
+                  </p>
+                  <p>
+                    <label class="icon" for="password"><i class="fa fa-lock"></i></label>
+                    <input
+                      class="input-control"
+                      id="password"
+                      type="password"
+                      placeholder="please enter your password"
+                      name="password"
+                      required=""
+                      aria-required="true" />
+                  </p>
+                  
+
+                  <p class="safe">
+                    <label class="remembermetext" for="rememberme"><input name="rememberme" type="checkbox" checked="checked" id="rememberme" class="rememberme" value="forever" />Remember me
+                    </label>
+                  </p>
+
+                    <a class="lostpassword" href="lostpassword.html">Foget password?</a></div>
+                    <input class="submit" type="submit" value="login" name="submit" />
+                    <input type="hidden" id="security" name="security" value="36ca3b32c8" /><input type="hidden" name="_wp_http_referer" value="/" />
+                  </p>
+                </form>
+              </div>
+            </div>
+          </nav>
         </div>
       </div>
+      
     </header>
-
-    <!-- Hero Section -->
-    <section class="relative relative py-12 md:py-20 bg-cover bg-center" style="background-image: url('hero-section-image.jpg')">
-      <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
-        <div class="md:w-1/2 text-center md:text-left text-white mb-8 md:mb-0">
-          <h1 class="text-4xl md:text-5xl font-bold mb-4">Track Your Fitness Journey</h1>
-          <p class="text-lg md:text-xl mb-8 text-blue-100">
-            Monitor workouts, analyze progress, and connect with friends to stay motivated on your fitness journey.
-          </p>
-          <div class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-            <button id="get-started-btn" class="px-6 py-3 bg-white text-blue-600 font-medium rounded-md hover:bg-gray-100 transition shadow-md">
-              Get Started
-            </button>
-            <button class="px-6 py-3 border border-white text-white font-medium rounded-md hover:bg-white hover:bg-opacity-10 transition">
-              Learn More
-            </button>
-          </div>
-        </div>
-        <div class="md:w-1/2">
-          <img src="hero-section-image.jpg" alt="Person tracking fitness" class="rounded-lg shadow-xl mx-auto" />
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
+    //show mobile-menu-btn
+    <script>document.addEventListener("DOMContentLoaded", function () {
+      const menuBtn = document.querySelector(".mobile-menu-btn");
+      const navMenu = document.getElementById("nav-menu");
+    
+      menuBtn.addEventListener("click", function () {
+        navMenu.classList.toggle("show");
+      });
+    });
+    </script>
   </body>
-</html>
