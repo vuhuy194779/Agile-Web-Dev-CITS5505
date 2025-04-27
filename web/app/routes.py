@@ -19,11 +19,10 @@ def login():
 
         # Find the user
         user = User.query.filter_by(username=username).first()
-        if user and user.check_password(password):
-            session['username'] = user.username  # Set session after successful login
-            return redirect(url_for('dashboard'))  # Redirect to user dashboard after successful login
-        else:
-            return jsonify({"status": "fail"}), 401  # Login failed
+        if user is None or not user.check_password(password):
+          return jsonify({"status": "fail"}), 401  # Login failed, return 401 status
+        session['username'] = user.username  # Login successful, set session
+        return redirect(url_for('dashboard'))  # Redirect to dashboard after successful login
 
 # Route: Logout
 @app.route('/logout')
