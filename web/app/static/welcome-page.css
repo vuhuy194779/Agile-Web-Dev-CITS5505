@@ -178,7 +178,7 @@ nav {
   position: relative;
 }
 
-/* 导航菜单样式 */
+/* nav bar */
 nav ul {
   display: flex;
   list-style: none;
@@ -214,14 +214,14 @@ nav ul li a:hover {
   top: 35px;
 }
 
-/* 右侧导航（Login 按钮或用户菜单） */
+/* login button and user button */
 .nav-right {
   display: flex;
   align-items: center;
   margin-left: 30px;
 }
 
-/* Login 按钮样式 */
+/* Login button */
 #login-btn {
   color: #1a73e8;
   text-decoration: none;
@@ -311,9 +311,6 @@ input.submit:hover {
   background-color: #f5f5f5;
 } */
 
-.hidden {
-  display: none;
-}
 /* Hero Section */
 .hero {
   padding: 140px 0 80px;

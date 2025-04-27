@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.security import generate_password_hash, check_password_hash
 from app import app,db, User
 
 
@@ -40,7 +39,7 @@ def dashboard():
         return redirect(url_for('homepage'))
     return render_template("welcome-page.html", username=session['username'])
 
-# Route: Forgot Password Page
+# Route: Forgot Password Page, need to add forgot password page
 @app.route('/forgot-password')
 def forgot_password():
     return render_template('forgot-password.html')
