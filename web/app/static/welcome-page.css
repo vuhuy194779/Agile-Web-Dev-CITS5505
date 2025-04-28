@@ -170,9 +170,20 @@ header {
   cursor: pointer;
   color: #1a73e8;
 }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  position: relative;
+}
+
+/* nav bar */
 nav ul {
   display: flex;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 nav ul li {
@@ -190,8 +201,9 @@ nav ul li a:hover {
   color: #1a73e8;
 }
 
+/* mobile button */
 .mobile-menu-btn {
-  display: none;
+  display: none; /* default hide */
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -199,7 +211,30 @@ nav ul li a:hover {
   color: #1a73e8;
   position: absolute;
   right: 15px;
-  top: 15px;
+  top: 35px;
+}
+
+/* login button and user button */
+.nav-right {
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+}
+
+/* Login button */
+#login-btn {
+  color: #1a73e8;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 16px;
+  border: 1px solid #1a73e8;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#login-btn:hover {
+  background-color: #1a73e8;
+  color: white;
 }
 
 .safe {
@@ -230,6 +265,51 @@ input.submit {
 input.submit:hover {
   background-color: #155ec3;
 }
+
+/* if already logined */
+.user-menu {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.user-menu span {
+  color: #555;
+  font-weight: 500;
+}
+
+/* .dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: none;
+  min-width: 120px;
+  z-index: 10;
+}
+
+.dropdown a {
+  display: block;
+  padding: 10px;
+  color: #555;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+ .dropdown a:hover { 
+  background-color: #f5f5f5;
+} */
 
 /* Hero Section */
 .hero {

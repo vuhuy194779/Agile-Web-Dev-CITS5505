@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TriTrack - Your Triathlon Journey Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='welcome-page.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="{{ url_for('static', filename='welcome-page.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <!-- Header with Navigation -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="/" class="logo" title="Go to homepage">Tri<span class="highlight">Track</span></a>
+          <button class="mobile-menu-btn">☰</button>
+          <nav>
+            <ul id="nav-menu">
+              <li><a href="#features">Features</a></li>
+              <li><a href="#how-it-works">Processes</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+            </ul>
+    
+            <div class="nav-right">
+              {% if username %}
+                <div class="user-menu" onclick="toggleDropdown()">
+                  <img src="{{ url_for('static', filename='avatar.png') }}" class="avatar" alt="avatar">
+                  <span>{{ username }}</span>
+                  <div id="dropdown" class="dropdown hidden">
+                    <a href="#">Personal Data</a>
+                    <a href="#">Sport track</a>
+                    <a href="{{ url_for('logout') }}">log out</a>
+                  </div>
+                </div>
+              {% else %}
+                <a href="#" id="login-btn">Login</a>
+              {% endif %}
+            </div>
+          </nav>
+        </div>
+      </div>
+      
+      <!-- Modal overlay and login form -->
+      <div id="modalOverlay" class="modal-overlay"></div>
+      <div id="sign" class="sign">
+        <p class="part loginPart">
+          <form id="login" action="{{ url_for('login') }}" method="POST">
+            <div id="register-btn">
+              <i class="fa fa-toggle-on"></i>
+              <a href="sign-up.html">Register now</a>
+            </div>
+            <br />
+            <h3>Login</h3>
+            <p>
+              <label class="icon" for="username"><i class="fa fa-user"></i></label>
+              <input class="input-control" id="username" type="text" placeholder="please enter your username" name="username" required />
+            </p>
+            <p>
+              <label class="icon" for="password"><i class="fa fa-lock"></i></label>
+              <input class="input-control" id="password" type="password" placeholder="please enter your password" name="password" required />
+            </p>
+            <p class="status"></p>
+    
+            <p class="safe">
+              <label class="remembermetext" for="rememberme">
+                <input name="rememberme" type="checkbox" checked="checked" id="rememberme" class="rememberme" value="forever" /> Remember me
+              </label>
+            </p>
+    
+            <a class="lostpassword" href="/forgot-password">Forget password?</a>
+            <input class="submit" type="submit" value="Login" />
+          </form>
+        </p>
+      </div>
+    </header>
+    
+    <script src="{{ url_for('static', filename='welcome-page-bottom.js') }}"></script>
+    
