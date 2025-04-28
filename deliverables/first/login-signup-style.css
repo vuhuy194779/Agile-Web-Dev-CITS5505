@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #f1f0f062;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container {
+    width: 90%;
+    max-width: 1000px;
+}
+
+.card {
+    display: flex;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.196);
+}
+
+.card-image {
+    flex: 1;
+    background: linear-gradient(135deg, #1c5dcd 0%, #11cb27 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    text-align: center;
+}
+
+.highlight {
+    color: #34a853;
+  }
+
+.overlay-text h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.overlay-text p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    text-align: left;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: #3a16f0;
+  }
+
+.card-form {
+    flex: 1;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-form h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.card-form h3 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input {
+    margin-bottom: 15px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.wrap {
+    display: flex;
+    justify-content: center;
+}
+
+form button {
+    padding: 12px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    margin-top: 15px;
+    text-align: center;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive for mobile screens */
+@media (max-width: 768px) {
+    .card {
+        flex-direction: column;
+    }
+
+    .card-image {
+        height: 200px;
+    }
+}

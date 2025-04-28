@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="login-signup-style.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="card">
+            <div class="card-image">
+                <div class="overlay-text">
+                    <h1>Welcome Back!</h1>
+                    <p>Login to continue your journey!</p>
+                </div>                
+            </div>
+            <div class="card-form">
+              <h1><a href="welcome-page.html" class="logo-link">Tri<span class="highlight">Track</span></a></h1>
+                <h2>Login</h2>
+                <br>  
+                <form action="welcome-page.html" method="post">
+                    <label for="email">
+                        Email:
+                    </label>
+                    <input type="text" name="email" 
+                        placeholder="Enter your Email" required>
+        
+                    <label for="password">
+                        Password:
+                    </label>
+                    <input type="password" name="password" 
+                        placeholder="Enter your Password" required>
+
+                    <a href="#" class="forgot-password" style="text-decoration: none;">Forgot Password?</a>
+                    <div class="wrap">
+                        <button type="submit">
+                            Login
+                        </button>
+                    </div>
+                </form>
+                <p>Not registered?
+                    <a href="sign-up.html" style="text-decoration: none;">
+                        Create an account
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
