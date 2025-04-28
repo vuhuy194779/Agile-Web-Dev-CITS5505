@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Training Data - TriTrack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="upload.css">
+    <script src="upload.js"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center p-5">
+    <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-2xl mt-16 transform hover:scale-105 transition duration-300">
+        <h1 class="text-3xl font-bold text-[#1e3c72] text-center mb-6">Upload Your Training Data</h1>
+        <div class="flex justify-around mb-6">
+            <button class="tablinks active bg-[#007bff] text-white px-4 py-2 rounded-md hover:bg-[#0056b3] transition duration-300" data-tab="manual">Manual Entry</button>
+            <button class="tablinks bg-[#007bff] text-white px-4 py-2 rounded-md hover:bg-[#0056b3] transition duration-300" data-tab="csv">CSV Upload</button>
+        </div>
+
+        <div id="manual" class="form-section">
+            <form id="manualForm">
+                <div class="mb-4">
+                    <label for="date" class="block text-gray-700 font-semibold mb-1 required">Date</label>
+                    <input type="date" id="date" class="w-full p-3  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1a73e8] transition duration-200" required>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold mb-1 required">Sport (Select one or more)</label>
+                    <div class="flex flex-col gap-2">
+                        <div>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="sport" value="swim" class="sport-checkbox mr-2 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded">
+                                <span class="text-gray-700">Swim</span>
+                            </label>
+                            <div class="sport-details swim-details">
+                                <div class="mb-2">
+                                    <label for="swim-distance" class="block text-gray-700 text-sm required">Distance (km)</label>
+                                    <input type="number" id="swim-distance" name="swim-distance" step="0.1" min="0" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="swim-time" class="block text-gray-700 text-sm required">Time (hh:mm:ss)</label>
+                                    <input type="text" id="swim-time" name="swim-time" placeholder="e.g., 01:30:00" class="w-full p-2  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200" required>
+                                </div>
+                                <div>
+                                    <label for="swim-heartRate" class="block text-gray-700 text-sm">Heart Rate (bpm)</label>
+                                    <input type="number" id="swim-heartRate" name="swim-heartRate" min="0" max="220" class="w-full p-2  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="sport" value="bike" class="sport-checkbox mr-2 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded">
+                                <span class="text-gray-700">Bike</span>
+                            </label>
+                            <div class="sport-details bike-details">
+                                <div class="mb-2">
+                                    <label for="bike-distance" class="block text-gray-700 text-sm required">Distance (km)</label>
+                                    <input type="number" id="bike-distance" name="bike-distance" step="0.1" min="0" class="w-full p-2  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="bike-time" class="block text-gray-700 text-sm required">Time (hh:mm:ss)</label>
+                                    <input type="text" id="bike-time" name="bike-time" placeholder="e.g., 01:30:00" class="w-full p-2  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200" required>
+                                </div>
+                                <div>
+                                    <label for="bike-heartRate" class="block text-gray-700 text-sm">Heart Rate (bpm)</label>
+                                    <input type="number" id="bike-heartRate" name="bike-heartRate" min="0" max="220" class="w-full p-2  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="flex items-center">
+                                <input type="checkbox" name="sport" value="run" class="sport-checkbox mr-2 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded">
+                                <span class="text-gray-700">Run</span>
+                            </label>
+                            <div class="sport-details run-details">
+                                <div class="mb-2">
+                                    <label for="run-distance" class="block text-gray-700 text-sm required">Distance (km)</label>
+                                    <input type="number" id="run-distance" name="run-distance" step="0.1" min="0" class="w-full p-2  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200" required>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="run-time" class="block text-gray-700 text-sm required">Time (hh:mm:ss)</label>
+                                    <input type="text" id="run-time" name="run-time" placeholder="e.g., 01:30:00" class="w-full p-2  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200" required>
+                                </div>
+                                <div>
+                                    <label for="run-heartRate" class="block text-gray-700 text-sm">Heart Rate (bpm)</label>
+                                    <input type="number" id="run-heartRate" name="run-heartRate" min="0" max="220" class="w-full p-2  border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="manualError" class="text-[#dc3545] text-sm text-center mb-4 hidden"></div>
+                <div id="manualSuccess" class="text-[#1a73e8] text-sm text-center mb-4 hidden">Data submitted successfully!</div>
+                <button type="submit" class="w-full bg-[#1a73e8] text-white py-3 rounded-md hover:bg-[#0056b3] transition duration-300">Submit Workout</button>
+            </form>
+        </div>
+
+        <div id="csv" class="form-section hidden">
+            <form id="csvForm">
+                <div class="mb-4">
+                    <span class="block text-gray-700 font-semibold mb-1 required">Upload CSV File</span>
+                    <input type="file" id="csvFile" accept=".csv" class="hidden" multiple required/>
+                    <label for="csvFile">
+                        <div id="dropArea" class="drop-area">
+                            <span class="mb-2 block text-xl font-semibold text-[#07074D]">
+                                Drop files here
+                            </span>
+                            <span class="mb-2 block text-base font-medium text-[#6B7280]">
+                                Or
+                            </span>
+                            <span class="mb-2 block text-xl font-semibold text-[#07074D]">
+                                Browse
+                            </span>
+                        </div>
+                    </label>
+                    <div id="fileList" class="mt-4"></div>
+                    <p class="text-gray-600 text-sm mt-2">CSV format: date (YYYY-MM-DD), sport (swim/bike/run), distance (km), time (hh:mm:ss), heart_rate (bpm, optional)</p>
+                </div>
+
+                <div id="csvError" class="text-[#dc3545] text-sm text-center mb-4 hidden"></div>
+                <div id="csvSuccess" class="text-[#1a73e8] text-sm text-center mb-4 hidden">File uploaded successfully!</div>
+                <button type="submit" class="w-full bg-[#1a73e8] text-white py-3 rounded-md hover:bg-[#0056b3] transition duration-300">Upload CSV</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

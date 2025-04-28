@@ -1,0 +1,27 @@
+body {
+    background: linear-gradient(to right, #1e3c72, #2a5298, #2a917a);
+}
+.required::after {
+    content: '*';
+    color: #dc3545;
+    margin-left: 2px;
+}
+.drop-area {
+    border: 2px dashed #ccc;
+    background-color: #f9f9fa;
+    padding: 2rem;
+    text-align: center;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+}
+.drop-area.dragover {
+    border-color: #1a73e8;
+    background-color: #e6f0fa;
+}
+.sport-details {
+    display: none;
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
