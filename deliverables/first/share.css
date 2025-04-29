@@ -1,0 +1,73 @@
+body {
+    background: linear-gradient(to right, #1e3c72, #2a5298, #2a917a);
+}
+.modal {
+    display: none;
+    animation: slideIn 0.3s ease-in-out;
+}
+@keyframes slideIn {
+    from {
+        transform: translateY(-20%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.modal-backdrop {
+    backdrop-filter: blur(5px);
+}
+.chart-placeholder {
+    background: linear-gradient(45deg, #e6f0fa, #f9f9fa);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+}
+.workout-card {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+.user-dropdown {
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    background: white;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.user-dropdown div {
+    padding: 0.5rem;
+    cursor: pointer;
+}
+.user-dropdown div:hover {
+    background: #e5e7eb;
+}
+.selected-users {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+.user-tag {
+    background: #e5e7eb;
+    color: #374151;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+.remove-user {
+    cursor: pointer;
+    color: #ef4444;
+}
