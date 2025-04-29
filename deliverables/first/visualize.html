@@ -41,16 +41,30 @@
             <option value="day">Daily</option>
             <option value="week">Weekly</option>
             <option value="month">Monthly</option>
-            <option value="6months">6 Months</option>
         </select>
     </div>
 
     <div class="container">
         <h2>Triathlon Training Visualization</h2>
         <div class="chart-section">
-            <canvas id="distanceChart"></canvas>
-            <canvas id="speedChart"></canvas>
-            <canvas id="heartRateChart"></canvas>
+            <div>
+                <h3>Training Distance</h3>
+                <canvas id="distanceChart"></canvas>
+            </div>
+            <div>
+                <h3>Exercise Time</h3>
+                <canvas id="timeChart"></canvas>
+            </div>
+            <div>
+                <h3>Average Speed</h3>
+                <canvas id="speedChart"></canvas>
+            </div>
+
+            <div>
+                <h3>Average Heart Rate</h3>
+                <canvas id="heartRateChart"></canvas>
+            </div>
+
         </div>
     </div>
 </body>

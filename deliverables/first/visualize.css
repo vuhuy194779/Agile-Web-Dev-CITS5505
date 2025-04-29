@@ -17,6 +17,11 @@ h2 {
     margin-bottom: 2rem;
 }
 
+h3 {
+    text-align: center;
+    color: white;
+}
+
 /* Chart layout for large screens */
 .chart-section {
     display: flex;
@@ -30,8 +35,8 @@ canvas {
     background-color: #fff;
     border-radius: 12px;
     padding: 1rem;
-    width: 400px !important;
-    height: 300px !important;
+    width: 350px !important;
+    height: 280px !important;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
