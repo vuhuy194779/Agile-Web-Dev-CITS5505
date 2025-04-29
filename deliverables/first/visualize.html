@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Triathlon Training Visualization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="visualize.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Punch-in Calendar Display -->
+    <div class="container">
+        <div class="calendar-wrapper">
+            <div class="calendar-header">
+                <button id="prev-month">&#8249;</button>
+                <div id="calendar-month">Month</div>
+                <button id="next-month">&#8250;</button>
+            </div>
+            <div class="calendar-content">
+                <div class="calendar-grid">
+                    <!-- Days will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Period Selection Dropdown -->
+    <div class="period-options">
+        <select id="periodSelect">
+            <option value="day">Daily</option>
+            <option value="week">Weekly</option>
+            <option value="month">Monthly</option>
+            <option value="6months">6 Months</option>
+            <option value="year">Yearly</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <h2>Triathlon Training Visualization</h2>
+        <div class="chart-section">
+            <canvas id="distanceChart"></canvas>
+            <canvas id="speedChart"></canvas>
+            <canvas id="heartRateChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const labels = ['Swimming', 'Cycling', 'Running'];
+
+        // Sample data (should be replaced with backend values)
+        const distanceData = [1.5, 40, 10]; // in km
+        const timeData = [30, 90, 50];     // in minutes
+        const speedData = distanceData.map((d, i) => parseFloat((d / (timeData[i] / 60)).toFixed(2))); // km/h
+        const heartRateData = [130, 140, 150]; // bpm
+
+        function createChart(canvasId, label, data, color) {
+            new Chart(document.getElementById(canvasId), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: label,
+                        data: data,
+                        backgroundColor: color,
+                        borderRadius: 8,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        createChart('distanceChart', 'Distance (km)', distanceData, ['#4dc9f6', '#00a8cc', '#2a917a']);
+        createChart('speedChart', 'Avg Speed (km/h)', speedData, ['#f9c80e', '#f86624', '#ea3546']);
+        createChart('heartRateChart', 'Avg Heart Rate (bpm)', heartRateData, ['#9966ff', '#c9cbff', '#6f42c1']);
+
+        document.getElementById('periodSelect').addEventListener('change', function () {
+            const period = this.value;
+            alert('You selected period: ' + period + '. This will be updated with real data processing later.');
+        });
+
+        // Render calendar punch-in interface
+        const calendarHeader = document.getElementById("calendar-month");
+        const calendarGrid = document.querySelector(".calendar-grid");
+        const prevBtn = document.getElementById("prev-month");
+        const nextBtn = document.getElementById("next-month");
+
+        let currentDate = new Date();
+
+        // Mock data for marked days
+        const mockMarkedDates = [
+            "2025-04-03",
+            "2025-04-04",
+            "2025-04-08",
+            "2025-04-09",
+            "2025-04-21"
+        ];
+
+        function renderCalendar(date) {
+            const year = date.getFullYear();
+            const month = date.getMonth();
+            const firstDay = new Date(year, month, 1);
+            const lastDay = new Date(year, month + 1, 0);
+
+            const firstWeekDay = firstDay.getDay();
+            const daysInMonth = lastDay.getDate();
+
+            calendarHeader.textContent = `${year}年${month + 1}月`;
+
+            calendarGrid.innerHTML = "";
+
+            // Create empty slots before first day
+            for (let i = 0; i < firstWeekDay; i++) {
+                calendarGrid.innerHTML += '<div></div>';
+            }
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const isoDate = `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+                const div = document.createElement("div");
+                div.className = "day";
+                div.textContent = day;
+                if (mockMarkedDates.includes(isoDate)) {
+                    div.classList.add("marked");
+                }
+                calendarGrid.appendChild(div);
+            }
+        }
+
+        prevBtn.addEventListener("click", () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            renderCalendar(currentDate);
+        });
+
+        nextBtn.addEventListener("click", () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            renderCalendar(currentDate);
+        });
+
+        renderCalendar(currentDate);
+    </script>
+</body>
+
+</html>
