@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Data to Share - TriTrack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="share.css">
+    <script src="share.js"></script>
+
+</head>
+<body class="min-h-screen flex flex-col items-center p-5">
+    <div class="mt-20 w-full max-w-3xl">
+        <h1 class="text-4xl font-bold text-white text-center mb-8 drop-shadow-lg">Select Data to Share</h1>
+
+        <!-- Charts Section -->
+        <div class="bg-white p-6 rounded-xl shadow-2xl mb-6 transform hover:scale-105 transition duration-300">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-2xl font-semibold text-[#1e3c72]">Performance Overview</h2>
+                <div class="flex space-x-3">
+                    <select id="periodSelector" class="p-2 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                        <option value="day">Daily</option>
+                        <option value="week">Weekly</option>
+                        <option value="month">Monthly</option>
+                        <option value="6months">6 Months</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex space-x-4 mb-4">
+                <div class="flex items-center">
+                    <input type="checkbox" id="chart-distance" class="chart-checkbox mr-2 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded">
+                    <label for="chart-distance" class="text-gray-700">Distance</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="chart-speed" class="chart-checkbox mr-2 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded">
+                    <label for="chart-speed" class="text-gray-700">Avg Speed</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="chart-heart-rate" class="chart-checkbox mr-2 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded">
+                    <label for="chart-heart-rate" class="text-gray-700">Avg Heart Rate</label>
+                </div>
+            </div>
+            <!-- Distance Chart -->
+            <div id="distance-chart" class="chart-placeholder hidden">
+                <canvas id="distanceCanvas"></canvas>
+            </div>
+            <!-- Speed Chart -->
+            <div id="speed-chart" class="chart-placeholder hidden">
+                <canvas id="speedCanvas"></canvas>
+            </div>
+            <!-- Heart Rate Chart -->
+            <div id="heart-rate-chart" class="chart-placeholder hidden">
+                <canvas id="heartRateCanvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Mocked Workout Sessions -->
+        <div class="space-y-6">
+            <!-- Workout Session 1 -->
+            <div class="workout-card bg-white p-6 rounded-xl shadow-2xl transform hover:scale-105 transition duration-300" style="animation-delay: 0.1s;">
+                <div class="flex items-center mb-4">
+                    <input type="checkbox" class="session-checkbox mr-3 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded" data-session-id="1">
+                    <h2 class="text-2xl font-semibold text-[#1e3c72]">Workout on 2025-04-25</h2>
+                </div>
+                <div class="space-y-4 sport-details hidden">
+                    <!-- Swim Data -->
+                    <div class="border-l-4 border-[#007bff] pl-4">
+                        <div class="flex items-center mb-2">
+                            <input type="checkbox" class="sport-checkbox mr-2 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded" data-session-id="1" data-sport="swim">
+                            <h3 class="text-lg font-semibold text-[#007bff]">Swim</h3>
+                        </div>
+                        <p class="text-gray-700">Distance: 1.5 km</p>
+                        <p class="text-gray-700">Time: 00:30:00</p>
+                        <p class="text-gray-700">Heart Rate: 140 bpm</p>
+                    </div>
+                    <!-- Bike Data -->
+                    <div class="border-l-4 border-[#007bff] pl-4">
+                        <div class="flex items-center mb-2">
+                            <input type="checkbox" class="sport-checkbox mr-2 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded" data-session-id="1" data-sport="bike">
+                            <h3 class="text-lg font-semibold text-[#007bff]">Bike</h3>
+                        </div>
+                        <p class="text-gray-700">Distance: 40 km</p>
+                        <p class="text-gray-700">Time: 02:00:00</p>
+                        <p class="text-gray-700">Heart Rate: 155 bpm</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workout Session 2 -->
+            <div class="workout-card bg-white p-6 rounded-xl shadow-2xl transform hover:scale-105 transition duration-300" style="animation-delay: 0.2s;">
+                <div class="flex items-center mb-4">
+                    <input type="checkbox" class="session-checkbox mr-3 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded" data-session-id="2">
+                    <h2 class="text-2xl font-semibold text-[#1e3c72]">Workout on 2025-04-26</h2>
+                </div>
+                <div class="space-y-4 sport-details hidden">
+                    <!-- Run Data -->
+                    <div class="border-l-4 border-[#007bff] pl-4">
+                        <div class="flex items-center mb-2">
+                            <input type="checkbox" class="sport-checkbox mr-2 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded" data-session-id="2" data-sport="run">
+                            <h3 class="text-lg font-semibold text-[#007bff]">Run</h3>
+                        </div>
+                        <p class="text-gray-700">Distance: 10 km</p>
+                        <p class="text-gray-700">Time: 00:50:00</p>
+                        <p class="text-gray-700">Heart Rate: 165 bpm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Share Selected Button -->
+        <div class="mt-8 text-center">
+            <button id="shareSelectedBtn" class="bg-gradient-to-r from-[#007bff] to-[#0056b3] text-white px-6 py-3 rounded-md hover:from-[#0056b3] hover:to-[#003d82] transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>Share Selected</button>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal fixed inset-0 flex items-center justify-center z-50">
+        <div class="modal-backdrop fixed inset-0 bg-black bg-opacity-50"></div>
+        <div class="bg-white p-6 rounded-xl shadow-2xl w-full max-w-md transform">
+            <h2 class="text-2xl font-semibold text-[#1e3c72] mb-4">Share Your Selection</h2>
+            <div class="mb-4 relative">
+                <label for="userSearch" class="block text-gray-700 font-semibold mb-1">Search Users to Share With</label>
+                <input type="text" id="userSearch" placeholder="Enter username..." class="w-full p-3 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                <div id="userDropdown" class="user-dropdown hidden"></div>
+                <div id="selectedUsers" class="selected-users"></div>
+            </div>
+            <div class="flex justify-end space-x-3">
+                <button id="shareBtn" class="bg-gradient-to-r from-[#007bff] to-[#0056b3] text-white px-4 py-2 rounded-md hover:from-[#0056b3] hover:to-[#003d82] transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>Share</button>
+                <button id="closeModalBtn" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 transition duration-300">Close</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
