@@ -61,6 +61,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 15px 0;
+  position: relative;
 }
 
 .logo {
@@ -169,13 +170,17 @@ header {
   font-size: 1.5rem;
   cursor: pointer;
   color: #1a73e8;
+  padding: 8px;
+  margin-left: 20px;
+  z-index: 1001;
 }
 nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 15px;
   position: relative;
+  flex: 1;
 }
 
 /* nav bar */
@@ -209,16 +214,15 @@ nav ul li a:hover {
   font-size: 1.5rem;
   cursor: pointer;
   color: #1a73e8;
-  position: absolute;
-  right: 15px;
-  top: 35px;
+  padding: 8px;
+  z-index: 1001;
 }
 
 /* login button and user button */
 .nav-right {
   display: flex;
   align-items: center;
-  margin-left: 30px;
+  margin-left: auto;
 }
 
 /* Login button */
@@ -275,8 +279,8 @@ input.submit:hover {
 }
 
 .avatar {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   margin-right: 8px;
 }
@@ -286,30 +290,33 @@ input.submit:hover {
   font-weight: 500;
 }
 
-/* .dropdown {
+.dropdown {
   position: absolute;
-  top: 40px;
+  top: 100%;
   right: 0;
-  background: white;
-  border: 1px solid #ddd;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  display: none;
-  min-width: 120px;
-  z-index: 10;
+  padding: 8px 0;
+  z-index: 1000;
 }
 
 .dropdown a {
   display: block;
-  padding: 10px;
+  padding: 8px 16px;
   color: #555;
   text-decoration: none;
-  white-space: nowrap;
+  transition: background-color 0.3s;
 }
 
- .dropdown a:hover { 
-  background-color: #f5f5f5;
-} */
+.dropdown a:hover {
+  background-color: #f8f9fa;
+}
+
+.hidden {
+  display: none;
+}
 
 /* Hero Section */
 .hero {
@@ -351,6 +358,102 @@ input.submit:hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* Features Section */
+.features {
+  padding: 60px 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-header h2 {
+  margin-bottom: 15px;
+}
+
+.section-header p {
+  color: #666;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.features-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 -15px;
+}
+
+.feature-card {
+  width: calc(33.333% - 30px);
+  margin: 0 15px 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  width: 60px;
+  height: 60px;
+  background-color: rgba(26, 115, 232, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: #1a73e8;
+  font-size: 1.5rem;
+}
+
+/* How It Works */
+.how-it-works {
+  padding: 60px 0;
+  background-color: #f0f4f9;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.step {
+  width: 23%;
+  text-align: center;
+  position: relative;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  background-color: #1a73e8;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-weight: bold;
+}
+
+.step:not(:last-child):after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  right: -30%;
+  width: 60%;
+  height: 2px;
+  background-color: #ddd;
+}
+
 /* Login Modal */
 .modal {
   display: none;
@@ -388,17 +491,21 @@ input.submit:hover {
 
   .mobile-menu-btn {
     display: block;
+    position: static;
+    transform: none;
   }
 
   nav ul {
     display: none;
     position: absolute;
-    top: 70px;
+    top: 100%;
     left: 0;
-    width: 100%;
+    width: 200px;
     background-color: #fff;
     flex-direction: column;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 1000;
   }
 
   nav ul.show {
@@ -407,6 +514,8 @@ input.submit:hover {
 
   nav ul li {
     margin: 0;
+    text-align: left;
+    padding-left: 20px;
   }
 
   nav ul li a {

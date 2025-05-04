@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from app import app,db, User
+#test use
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 # Route: Homepage
@@ -45,21 +47,21 @@ def forgot_password():
 
 
 
-# @app.route('/create-user')
-# def create_user():
-#     user = User(username="admin")
-#     user.set_password("123")
-#     db.session.add(user)
-#     db.session.commit()
-#     return "user created"
+@app.route('/create-user')
+def create_user():
+    user = User(username="admin")
+    user.set_password("123")
+    db.session.add(user)
+    db.session.commit()
+    return "user created"
 
-# # login test only）
-# @app.route('/simulate-login/<username>')
-# def simulate_login(username):
-#     user = User.query.filter_by(username=username).first()
-#     if user:
-#         session['username'] = user.username
-#         return redirect(url_for('dashboard'))
-#     return "user not exist", 404
+# login test only）
+@app.route('/simulate-login/<username>')
+def simulate_login(username):
+    user = User.query.filter_by(username=username).first()
+    if user:
+        session['username'] = user.username
+        return redirect(url_for('dashboard'))
+    return "user not exist", 404
 
 
