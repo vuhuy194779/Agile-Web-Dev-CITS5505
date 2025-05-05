@@ -56,6 +56,19 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 //Signup modal
+
+const signupForm = document.getElementById("signUpForm");
+
+signupForm.addEventListener("submit", function (e) {
+  const passwordInput = document.getElementById("newPassword");
+  const password = passwordInput.value;
+
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters long.");
+    e.preventDefault(); // Stop form submission
+  }
+});
+
 // Password match validation for signup form
 document.getElementById("signUpForm")?.addEventListener("submit", function (e) {
   const password = document.getElementById("newPassword").value;
