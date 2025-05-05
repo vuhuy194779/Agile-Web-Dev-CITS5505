@@ -91,78 +91,6 @@ header {
   color: #fff;
 }
 
-#modalOverlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 998;
-}
-
-/* login part */
-.sign {
-  font-family: "Helvetica Neue", "Microsoft Yahei", sans-serif;
-  color: #8e8e8e;
-  font-size: 12px;
-  line-height: 1.5;
-  position: fixed;
-  max-width: 400px;
-  width: 90%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 30px;
-  box-sizing: border-box;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  display: none;
-  z-index: 999;
-  border-radius: 8px;
-}
-
-.sign .icon {
-  margin-right: 5px;
-}
-
-.sign input[type="text"],
-.sign input[type="password"] {
-  width: calc(100% - 30px);
-  padding: 8px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.sign .submit {
-  margin-top: 10px;
-  padding: 10px 20px;
-  background: #0693e3;
-  border: none;
-  color: #fff;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.sign .close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 18px;
-  color: #aaa;
-  cursor: pointer;
-}
-
-.sign .close:hover {
-  color: #000;
-}
-
-#register-btn a {
-  text-decoration: none;
-}
 .mobile-menu-btn {
   display: none;
   background: none;
@@ -226,19 +154,20 @@ nav ul li a:hover {
 }
 
 /* Login button */
-#login-btn {
-  color: #1a73e8;
-  text-decoration: none;
+#login-btn, #signup-btn {
+  color: white;
+  background-color: #1a73e8;
   font-weight: 500;
   padding: 8px 16px;
   border: 1px solid #1a73e8;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  text-decoration: none;
 }
 
-#login-btn:hover {
-  background-color: #1a73e8;
-  color: white;
+#login-btn:hover, #signup-btn:hover {
+  background-color: #1558b0;
+  color: white;a73e8
 }
 
 .safe {
@@ -454,20 +383,6 @@ input.submit:hover {
   background-color: #ddd;
 }
 
-/* Login Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 2000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(243, 8, 8, 0.5);
-  align-items: center;
-  justify-content: center;
-}
-
 /* Responsive Styles */
 @media (max-width: 1024px) {
   .feature-card {
@@ -549,4 +464,119 @@ input.submit:hover {
     width: 100%;
     margin-bottom: 30px;
   }
+}
+
+/* Overlay for modal */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+
+/* Modal container */
+.login-modal,.signup-modal {
+  display: none;
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 850px;
+  max-width: 95%;
+  height: 550px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+/* Inner layout: same as your login page */
+.modal-card {
+  display: flex;
+  height: 100%;
+}
+
+/* Left side (image/text) */
+.modal-card-image {
+  flex: 1;
+  background: linear-gradient(135deg, #1c5dcd 0%, #11cb27 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.modal-card-image .overlay-text h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+.modal-card-image .overlay-text p {
+  font-size: 16px;
+}
+
+/* Right side (form) */
+.modal-card-form {
+  flex: 1;
+  padding: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Close button */
+.modal-card-form .close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Form styling */
+.modal-card-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-card-form input[type="text"],
+.modal-card-form input[type="password"] {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-card-form label {
+  margin-bottom: 5px;
+}
+
+.modal-card-form .wrap {
+  margin-top: 10px;
+}
+
+.modal-card-form button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  padding: 11px;
+  border: none;
+  width: 80px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: medium;
+}
+
+.modal-card-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.modal-h1{
+  color: white;
 }

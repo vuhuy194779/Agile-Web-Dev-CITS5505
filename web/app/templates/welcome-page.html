@@ -43,39 +43,83 @@
         </div>
       </div>
       
-      <!-- Modal overlay and login form -->
-      <div id="modalOverlay" class="modal-overlay"></div>
-      <div id="sign" class="sign">
-        <p class="part loginPart">
-          <form id="login" action="{{ url_for('login') }}" method="POST">
-            <div id="register-btn">
-              <i class="fa fa-toggle-on"></i>
-              <a href="sign-up.html">Register now</a>
+      <!-- Modal overlay-->
+      <div id="modalOverlay" class="overlay"></div>
+
+      <!-- Login Modal -->
+      <div id="loginModal" class="login-modal">
+        <div class="modal-card">
+          <!-- Left: image/text -->
+          <div class="modal-card-image">
+            <div class="overlay-text">
+              <h1 class="modal-h1">Welcome Back!</h1>
+              <p>Login to continue your journey!</p>
             </div>
-            <br />
-            <h3>Login</h3>
-            <p>
-              <label class="icon" for="username"><i class="fa fa-user"></i></label>
-              <input class="input-control" id="username" type="text" placeholder="please enter your username" name="username" required />
-            </p>
-            <p>
-              <label class="icon" for="password"><i class="fa fa-lock"></i></label>
-              <input class="input-control" id="password" type="password" placeholder="please enter your password" name="password" required />
-            </p>
-            <p class="status"></p>
-    
-            <p class="safe">
-              <label class="remembermetext" for="rememberme">
-                <input name="rememberme" type="checkbox" checked="checked" id="rememberme" class="rememberme" value="forever" /> Remember me
+          </div>
+
+          <!-- Right: form -->
+          <div class="modal-card-form">
+            <button id="closeLoginModal" class="close">&times;</button>
+            <h2>Login</h2>
+            <form id="loginForm" action="#" method="post">
+              <label for="username">Email:</label>
+              <input type="text" id="username" name="username" placeholder="Enter your Email" required>
+
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+
+              <a href="#" class="forgot-password" style="text-decoration: none;">Forgot Password?</a>
+              <br>
+              <label>
+                <input type="checkbox" id="rememberme"> Remember Me
               </label>
-            </p>
-    
-            <a class="lostpassword" href="/forgot-password">Forget password?</a>
-            <input class="submit" type="submit" value="Login" />
-          </form>
-        </p>
+
+              <div class="wrap">
+                <button type="submit">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
+
+      <!-- Sign Up Modal -->
+      <div id="signUpModal" class="signup-modal">
+        <div class="modal-card">
+          <!-- Left: image/text -->
+          <div class="modal-card-image">
+            <div class="overlay-text">
+              <h1 class="modal-h1">Track Your Triathlon Journey</h1>
+              <p>Get ready to transform your journey, track your progress!</p>
+            </div>
+          </div>
+
+          <!-- Right: form -->
+          <div class="modal-card-form">
+            <button id="closeSignupModal" class="close">&times;</button>
+            <h2>Sign Up</h2>
+            <form id="signUpForm" action="#" method="post">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" placeholder="Enter your Name" required>
+
+              <label for="email">Email:</label>
+              <input type="text" id="email" name="email" placeholder="Enter your Email" required>
+
+              <label for="password">Password:</label>
+              <input type="password" id="newPassword" name="password" placeholder="Enter your Password" required>
+
+              <label for="confirm-password">Confirm Password:</label>
+              <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your Password" required>
+
+              <div class="wrap">
+                <button type="submit">Sign Up</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
     </header>
+
     <!-- Hero Section -->
     <section class="hero">
       <div class="container">
@@ -90,7 +134,7 @@
               {% if username %}
               <a href="#" class="btn" id="signup-btn">Get Started</a>
               {% else %}
-              <a href="#" id="login-btn">Sign-Up</a>
+              <a href="#" id="signup-btn">Sign Up</a>
               {% endif %}
 
               <a href="#how-it-works" class="btn btn-outline">Learn More</a>
