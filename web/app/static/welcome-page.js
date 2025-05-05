@@ -1,14 +1,16 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const loginBtn = document.getElementById("login-btn");
+  const loginBtns = document.querySelectorAll("#login-btn");
   const loginPopup = document.getElementById("sign");
   const closeBtn = document.querySelector(".sign .close");
   const overlay = document.getElementById("modalOverlay");
 
   // small login page
-  loginBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    loginPopup.style.display = "block";
-    overlay.style.display = "block";
+  loginBtns.forEach(function (loginBtn) {
+    loginBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      loginPopup.style.display = "block";
+      overlay.style.display = "block";
+    });
   });
 
   // press overlay, close login page
