@@ -59,6 +59,25 @@ window.addEventListener("DOMContentLoaded", function () {
 
 const signupForm = document.getElementById("signUpForm");
 
+document.getElementById('username').addEventListener('blur', function () {
+  const username = this.value;
+
+  fetch(`/check-username?username=${encodeURIComponent(username)}`)
+    .then(response => response.json())
+    .then(data => {
+      const msg = document.getElementById('username-msg');
+      if (!data.available) {
+        msg.textContent = 'Username is already taken.';
+        msg.style.color = 'red';
+      } else {
+        msg.textContent = 'Username is available.';
+        msg.style.color = 'green';
+      }
+    })
+    .catch(err => console.error('Error checking username:', err));
+});
+
+
 signupForm.addEventListener("submit", function (e) {
   const passwordInput = document.getElementById("newPassword");
   const password = passwordInput.value;
