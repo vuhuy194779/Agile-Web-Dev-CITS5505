@@ -1,10 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
   const loginBtns = document.querySelectorAll("#login-btn");
-  const loginPopup = document.getElementById("sign");
-  const closeBtn = document.querySelector(".sign .close");
+  const loginPopup = document.getElementById("loginModal");
+  const closeBtn = document.querySelector(".login-modal .close");
+
+  const signupBtn = document.getElementById("signup-btn");
+  const signUpPopup = document.getElementById("signUpModal");
+  const closeSignupBtn = document.querySelector(".signup-modal .close");
+
   const overlay = document.getElementById("modalOverlay");
 
-  // small login page
+  // Show login modal when login button is clicked
   loginBtns.forEach(function (loginBtn) {
     loginBtn.addEventListener("click", function (e) {
       e.preventDefault();
@@ -13,11 +18,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // press overlay, close login page
-  overlay.addEventListener("click", function () {
-    loginPopup.style.display = "none";
-    overlay.style.display = "none";
-  });
+// Close login modal when clicking the close button
+closeBtn?.addEventListener("click", function () {
+  loginPopup.style.display = "none";
+  overlay.style.display = "none";
 });
 
 //remember me
@@ -40,7 +44,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   // remember me login
-  document.getElementById("login").addEventListener("submit", function () {
+  document.getElementById("loginForm").addEventListener("submit", function (e) {
     if (rememberMeCheckbox.checked) {
       localStorage.setItem("rememberedUsername", usernameInput.value.trim());
       localStorage.setItem("rememberedPassword", passwordInput.value.trim()); // can be removed for security
@@ -49,4 +53,69 @@ window.addEventListener("DOMContentLoaded", function () {
       localStorage.removeItem("rememberedPassword");
     }
   });
+});
+
+//Signup modal
+
+const signupForm = document.getElementById("signUpForm");
+
+document.getElementById('username').addEventListener('blur', function () {
+  const username = this.value;
+
+  fetch(`/check-username?username=${encodeURIComponent(username)}`)
+    .then(response => response.json())
+    .then(data => {
+      const msg = document.getElementById('username-msg');
+      if (!data.available) {
+        msg.textContent = 'Username is already taken.';
+        msg.style.color = 'red';
+      } else {
+        msg.textContent = 'Username is available.';
+        msg.style.color = 'green';
+      }
+    })
+    .catch(err => console.error('Error checking username:', err));
+});
+
+
+signupForm.addEventListener("submit", function (e) {
+  const passwordInput = document.getElementById("newPassword");
+  const password = passwordInput.value;
+
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters long.");
+    e.preventDefault(); // Stop form submission
+  }
+});
+
+// Password match validation for signup form
+document.getElementById("signUpForm")?.addEventListener("submit", function (e) {
+  const password = document.getElementById("newPassword").value;
+  const confirmPassword = document.getElementById("confirm-password").value;
+
+  if (password !== confirmPassword) {
+    e.preventDefault();
+    alert("Passwords do not match! Please check again.");
+  }
+});
+
+// Show Sign Up Modal
+signupBtn?.addEventListener("click", function (e) {
+  e.preventDefault();
+  signUpPopup.style.display = "block";
+  overlay.style.display = "block";
+});
+
+// Close Sign Up Modal
+closeSignupBtn?.addEventListener("click", function () {
+  signUpPopup.style.display = "none";
+  overlay.style.display = "none";
+});
+
+// Close sign up modal when clicking outside (on overlay)
+overlay.addEventListener("click", function () {
+  loginPopup.style.display = "none";
+  signUpPopup.style.display = "none";
+  overlay.style.display = "none";
+});
 });

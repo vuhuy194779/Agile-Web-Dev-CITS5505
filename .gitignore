@@ -1,0 +1,5 @@
+.vscode/*
+web/venv/*
+*.pyc
+web/app.db
+web/migrations/*
