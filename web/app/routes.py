@@ -11,7 +11,7 @@ def homepage():
     return render_template("welcome-page.html")
 
 # Route: Login
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'GET':
         return render_template('login.html')  # Login page

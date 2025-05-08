@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TriTrack - Your Triathlon Journey Tracker</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='welcome-page.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='welcome-page.css') }}" />
     <script src="{{ url_for('static', filename='welcome-page.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
@@ -14,35 +13,45 @@
     <header>
       <div class="container">
         <div class="header-content">
-          <a href="/" class="logo" title="Go to homepage">Tri<span class="highlight">Track</span></a>
-          <button class="mobile-menu-btn">☰</button>
-          <nav>
-            <ul id="nav-menu">
-              <li><a href="#features">Features</a></li>
-              <li><a href="#how-it-works">Processes</a></li>
-              <li><a href="#testimonials">Testimonials</a></li>
-            </ul>
-    
+          <div class="logo-row">
+            <a href="/" class="logo" title="Go to homepage">Tri<span class="highlight">Track</span></a>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
+              <ul id="nav-menu">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">Processes</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+              </ul>
+            </nav>
+            <div class="right-group">
+              <div class="search-container">
+                <form action="#" method="get" class="search-form">
+                  <input type="text" name="search" placeholder="Search..." class="search-input" />
+                  <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
             <div class="nav-right">
               {% if username %}
-                
-                <div class="user-menu" onclick="toggleDropdown()">
-                  <img src="{{ url_for('static', filename='avatar.png') }}" class="avatar" alt="avatar">
-                  <span>{{ username }}</span>
-                  <div id="dropdown" class="dropdown hidden">
-                    <a href="#">Personal Data</a>
-                    <a href="#">Sport track</a>
-                    <a href="{{ url_for('logout') }}">log out</a>
-                  </div>
+              <div class="user-menu" onclick="toggleDropdown()">
+                <img src="{{ url_for('static', filename='avatar.png') }}" class="avatar" alt="avatar" />
+                <span>{{ username }}</span>
+                <div id="dropdown" class="dropdown hidden">
+                  <a href="#">Personal Data</a>
+                  <a href="#">Sport Track</a>
+                  <a href="{{ url_for('logout') }}">Log Out</a>
                 </div>
+              </div>
               {% else %}
-                <a href="#" id="login-btn">Login</a>
+              <a href="#" id="login-btn">Login</a>
               {% endif %}
             </div>
-          </nav>
+          </div>
         </div>
       </div>
-      
+
       <!-- Modal overlay-->
       <div id="modalOverlay" class="overlay"></div>
 
@@ -61,18 +70,16 @@
           <div class="modal-card-form">
             <button id="closeLoginModal" class="close">&times;</button>
             <h2>Login</h2>
-            <form id="loginForm" action="#" method="post">
+            <form id="loginForm" action="{{ url_for('login') }}" method="post">
               <label for="username">Username:</label>
-              <input type="text" id="username" name="username" placeholder="Enter your Username" required>
+              <input type="text" id="username" name="username" placeholder="Enter your Username" required />
 
               <label for="password">Password:</label>
-              <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+              <input type="password" id="password" name="password" placeholder="Enter your Password" required />
 
-              <a href="#" class="forgot-password" style="text-decoration: none;">Forgot Password?</a>
-              <br>
-              <label>
-                <input type="checkbox" id="rememberme"> Remember Me
-              </label>
+              <a href="#" class="forgot-password" style="text-decoration: none">Forgot Password?</a>
+              <br />
+              <label> <input type="checkbox" id="rememberme" /> Remember Me </label>
 
               <div class="wrap">
                 <button type="submit">Login</button>
@@ -99,16 +106,16 @@
             <h2>Sign Up</h2>
             <form id="signUpForm" action="#" method="post">
               <label for="username">Username:</label>
-              <input type="text" id="username" name="username" placeholder="Enter your Username" required>
+              <input type="text" id="username" name="username" placeholder="Enter your Username" required />
 
               <label for="email">Email:</label>
-              <input type="text" id="email" name="email" placeholder="Enter your Email" required>
+              <input type="text" id="email" name="email" placeholder="Enter your Email" required />
 
               <label for="password">Password:</label>
-              <input type="password" id="newPassword" name="password" placeholder="Enter your Password" minlength="6" required>
+              <input type="password" id="newPassword" name="password" placeholder="Enter your Password" minlength="6" required />
 
               <label for="confirm-password">Confirm Password:</label>
-              <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your Password" required>
+              <input type="password" id="confirm-password" name="confirm-password" placeholder="Re-enter your Password" required />
 
               <div class="wrap">
                 <button type="submit">Sign Up</button>
@@ -117,7 +124,6 @@
           </div>
         </div>
       </div>
-
     </header>
 
     <!-- Hero Section -->
@@ -132,7 +138,7 @@
             </p>
             <div class="hero-buttons">
               {% if username %}
-              <a href="#" class="btn" id="signup-btn">Get Started</a>
+              <a href="#" class="btn" id="upload-btn">Up Load</a>
               {% else %}
               <a href="#" id="signup-btn">Sign Up</a>
               {% endif %}
@@ -141,9 +147,7 @@
             </div>
           </div>
           <div class="hero-image">
-            <img
-              src="{{ url_for('static', filename='hero-image.png') }}"
-              alt="Triathlon Training" />
+            <img src="{{ url_for('static', filename='hero-image.png') }}" alt="Triathlon Training" />
           </div>
         </div>
       </div>
@@ -223,6 +227,51 @@
         </div>
       </div>
     </section>
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>TriTrack</h3>
+            <p>The complete triathlon training companion for swimmers, cyclists, and runners of all levels.</p>
+            <div class="social-icons">
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">f</a>
+              <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">x</a>
+              <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer">t</a>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">ig</a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h3>Features</h3>
+            <ul>
+              <li><a href="#">Swim Tracking</a></li>
+              <li><a href="#">Bike Analytics</a></li>
+              <li><a href="#">Run Metrics</a></li>
+              <li><a href="#">Race Planning</a></li>
+              <li><a href="#">Performance Analysis</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Resources</h3>
+            <ul>
+              <li><a href="#">Triathlon Calendar</a></li>
+              <li><a href="#">Training Plans</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Company</h3>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 TriTrack. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
   </body>
-    <script src="{{ url_for('static', filename='welcome-page-bottom.js') }}"></script>
-    
+  <script src="{{ url_for('static', filename='welcome-page-bottom.js') }}"></script>
+</html>
