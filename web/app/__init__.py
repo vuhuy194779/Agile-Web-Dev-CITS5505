@@ -1,19 +1,13 @@
 from flask import Flask
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
-from app.models import db, User
+from config import Config
+from flask_login import LoginManager
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config.from_object(Config)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+login = LoginManager(app)
 
-#test use
-app.secret_key = 'your_secret_key'
-
-db.init_app(app)
-
-#test use
- #Create the database and tables
-with app.app_context():
-    db.create_all()
-# Import routes after initializing the app and db to avoid circular imports
-from app import routes
+from app import routes, models

@@ -1,7 +1,9 @@
 # Web Application for Training Tracking
 
 ## Project Purpose
+
 ### What is a Triathlon?
+
 A triathlon is a multi-discipline endurance race consisting of swimming, cycling, and running performed in immediate succession. The most recognized formats include:
 
 Sprint: 750m swim, 20km bike, 5km run
@@ -21,5 +23,14 @@ Each distance typically has a cut-off time. For full Ironman races, athletes mus
 | 24022113 | Olivia Zhang | OliviaZ12       |
 
 ## Instruction
+
+In the terminal, run the following command
+
+```
+cd web
+pip install -r requirement.txt
+flask db upgrade
+flask run
+```
 
 ## Test
