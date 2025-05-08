@@ -64,6 +64,8 @@ header {
   position: relative;
 }
 
+.logo-row {
+  display: flex;
   align-items: center;
   width: 100%;
 }
