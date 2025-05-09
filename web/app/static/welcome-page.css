@@ -479,7 +479,7 @@ input.submit:hover {
 
 /* Modal container */
 .login-modal,.signup-modal {
-  display: none;
+  display: block;
   position: fixed;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -562,7 +562,7 @@ input.submit:hover {
   margin-top: 10px;
 }
 
-.modal-card-form button[type="submit"] {
+.modal-card-form input[type="submit"] {
   background-color: #007bff;
   color: white;
   padding: 11px;
@@ -573,7 +573,7 @@ input.submit:hover {
   font-size: medium;
 }
 
-.modal-card-form button[type="submit"]:hover {
+.modal-card-form input[type="submit"]:hover {
   background-color: #0056b3;
 }
 

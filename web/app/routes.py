@@ -1,67 +1,57 @@
-from flask import Flask, request, jsonify, render_template, redirect, url_for, session
-from flask_sqlalchemy import SQLAlchemy
-from app import app,db, User
-#test use
-from werkzeug.security import generate_password_hash, check_password_hash
-
+from flask import request, render_template, redirect, url_for, flash
+from flask_login import current_user, login_user, logout_user, login_required
+from app.forms import LoginForm, SignupForm
+from app.models import User
+from app import app, db
 
 # Route: Homepage
 @app.route('/')
 def homepage():
     return render_template("welcome-page.html")
 
-# Route: Login
-@app.route('/login', methods=['POST'])
-def login():
-    if request.method == 'GET':
-        return render_template('login.html')  # Login page
-    elif request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-
-        # Find the user
-        user = User.query.filter_by(username=username).first()
-        if user is None or not user.check_password(password):
-          return jsonify({"status": "fail"}), 401  # Login failed, return 401 status
-        session['username'] = user.username  # Login successful, set session
-        return redirect(url_for('dashboard'))  # Redirect to dashboard after successful login
-
-# Route: Logout
-@app.route('/logout')
-def logout():
-    session.clear()  # Clear session
-    return redirect(url_for('homepage'))  # Redirect to homepage
-
 # Route: User Dashboard
 @app.route('/dashboard')
+@login_required
 def dashboard():
-    # Redirect to homepage if the user is not logged in
-    if 'username' not in session:
-        return redirect(url_for('homepage'))
-    return render_template("welcome-page.html", username=session['username'])
+    # user = User.query.filter_by(username=current_user.username).first_or_404()
+    return render_template("welcome-page.html")
+    # return render_template("visulize.html", title="Home", user=user)
 
-# Route: Forgot Password Page, need to add forgot password page
-@app.route('/forgot-password')
-def forgot_password():
-    return render_template('forgot-password.html')
-
-
-
-@app.route('/create-user')
-def create_user():
-    user = User(username="admin")
-    user.set_password("123")
-    db.session.add(user)
-    db.session.commit()
-    return "user created"
-
-# login test only）
-@app.route('/simulate-login/<username>')
-def simulate_login(username):
-    user = User.query.filter_by(username=username).first()
-    if user:
-        session['username'] = user.username
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if current_user.is_authenticated:
         return redirect(url_for('dashboard'))
-    return "user not exist", 404
+    form = LoginForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.username.data).first()
+        if user is None or not user.check_password(form.password.data):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        login_user(user, remember=form.remember_me.data)
+        return redirect(url_for('dashboard'))
+    return render_template('login.html', form=form)
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('homepage'))
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if current_user.is_authenticated:
+        return redirect(url_for('dashboard'))
+    form = SignupForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data)
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('login'))
+    return render_template('signup.html', form=form)
 
 
+# # Route: Forgot Password Page, need to add forgot password page
+# @app.route('/forgot-password')
+# def forgot_password():
+#     return render_template('forgot-password.html')

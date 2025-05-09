@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TriTrack - Your Triathlon Journey Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='welcome-page.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='welcome-page-bottom.js') }}"></script>
+  </head>
+  <body>
+    <!-- Header with Navigation -->
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <a href="/" class="logo" title="Go to homepage">Tri<span class="highlight">Track</span></a>
+          <button class="mobile-menu-btn">☰</button>
+          <nav>
+            <ul id="nav-menu">
+              <li><a href="#features">Features</a></li>
+              <li><a href="#how-it-works">Processes</a></li>
+              <li><a href="#testimonials">Testimonials</a></li>
+            </ul>
+    
+            <div class="nav-right">
+              {% if current_user.is_anonymous %}
+                <a href="{{ url_for('login') }}" id="login-btn">Login</a>
+              {% else %}
+              <div class="user-menu" onclick="toggleDropdown()">
+                <img src="{{ url_for('static', filename='avatar.png') }}" class="avatar" alt="avatar">
+                <span>{{ current_user.username }}</span>
+                <div id="dropdown" class="dropdown hidden">
+                  <a href="#">Personal Data</a>
+                  <a href="#">Sport track</a>
+                  <a href="{{ url_for('logout') }}">log out</a>
+                </div>
+              </div>
+              {% endif %}
+            </div>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </body>
+    
