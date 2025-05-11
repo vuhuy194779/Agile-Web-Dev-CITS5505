@@ -6,7 +6,6 @@
     <title>TriTrack - Your Triathlon Journey Tracker</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='welcome-page.css') }}">
     <link rel="stylesheet" href="/static/upload.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='welcome-page-bottom.js') }}"></script>
@@ -52,6 +51,8 @@
       </div>
     </header>
 
+    
+
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul>
@@ -62,5 +63,51 @@
         {% endif %}
     {% endwith %}
     {% block content %}{% endblock %}
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>TriTrack</h3>
+            <p>The complete triathlon training companion for swimmers, cyclists, and runners of all levels.</p>
+            <div class="social-icons">
+              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">f</a>
+              <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">x</a>
+              <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer">t</a>
+              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">ig</a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h3>Features</h3>
+            <ul>
+              <li><a href="#">Swim Tracking</a></li>
+              <li><a href="#">Bike Analytics</a></li>
+              <li><a href="#">Run Metrics</a></li>
+              <li><a href="#">Race Planning</a></li>
+              <li><a href="#">Performance Analysis</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Resources</h3>
+            <ul>
+              <li><a href="#">Triathlon Calendar</a></li>
+              <li><a href="#">Training Plans</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>Company</h3>
+            <ul>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 TriTrack. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
   </body>
+  <script src="{{ url_for('static', filename='welcome-page-bottom.js') }}"></script>
     
