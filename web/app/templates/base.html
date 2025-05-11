@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TriTrack - Your Triathlon Journey Tracker</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='welcome-page.css') }}">
+    <link rel="stylesheet" href="/static/upload.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ url_for('static', filename='welcome-page-bottom.js') }}"></script>
+    <script src="/static/upload.js"></script>
   </head>
   <body>
     <!-- Header with Navigation -->
@@ -17,11 +20,17 @@
           <a href="/" class="logo" title="Go to homepage">Tri<span class="highlight">Track</span></a>
           <button class="mobile-menu-btn">☰</button>
           <nav>
-            <ul id="nav-menu">
-              <li><a href="#features">Features</a></li>
-              <li><a href="#how-it-works">Processes</a></li>
-              <li><a href="#testimonials">Testimonials</a></li>
-            </ul>
+              <ul id="nav-menu">
+                {% if current_user.is_anonymous %}
+                  <li><a href="#features">Features</a></li>
+                  <li><a href="#how-it-works">Processes</a></li>
+                  <li><a href="#testimonials">Testimonials</a></li>
+                {% else %}
+                  <li><a href="{{ url_for('upload') }}">Upload</a></li>
+                  <li><a href="#">Share</a></li>
+                {% endif %}
+              </ul>          
+            
     
             <div class="nav-right">
               {% if current_user.is_anonymous %}
