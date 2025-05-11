@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, FileField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User
 
@@ -26,3 +26,14 @@ class SignupForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
+class UploadForm(FlaskForm):
+    date = DateField('Workout Date', validators=[DataRequired()])
+    swimming = BooleanField('Swimming')
+    cycling = BooleanField('Cycling')
+    running = BooleanField('Running')
+    submit = SubmitField('Upload Workout')
+
+class CSVUploadForm(FlaskForm):
+    csv_file = FileField('CSV File', validators=[DataRequired()])
+    submit = SubmitField('Upload CSV')

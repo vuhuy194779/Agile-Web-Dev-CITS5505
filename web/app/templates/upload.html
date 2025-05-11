@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="min-h-screen flex flex-col items-center p-5 gradient-background">
+    <div class="mt-20 w-full max-w-2xl">
+        <h1 class="text-3xl font-bold text-white text-center mb-6 drop-shadow-lg">Upload Your Training Data</h1>
+
+        <!-- Tab Navigation -->
+        <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition duration-300">
+            <div class="tabs mb-6 flex justify-around">
+                <button class="tablinks active" data-tab="manual">Manual Entry</button>
+                <button class="tablinks" data-tab="csv">CSV Upload</button>
+            </div>
+
+            <!-- Manual Entry Tab -->
+            <div id="manual" class="tab-pane active">
+                <form id="manualForm" method="POST" class="space-y-6">
+                    {{ form.hidden_tag() }}
+                    <div class="mb-4">
+                        <label for="date" class="block text-gray-700 font-semibold mb-1 required">Date</label>
+                        {{ form.date(class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#1a73e8] transition duration-200") }}
+                        {% if form.date.errors %}
+                            <p class="error-message">{{ form.date.errors[0] }}</p>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-gray-700 font-semibold mb-1 required">Sport (Select one or more)</label>
+                        <div class="flex flex-col gap-2">
+                            <div>
+                                <label class="flex items-center">
+                                    {{ form.swimming(class="sport-checkbox mr-2 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded") }}
+                                    <span class="text-gray-700">Swimming</span>
+                                </label>
+                                <div class="sport-details swimming-details">
+                                    <div class="mb-2">
+                                        <label for="swimming-distance" class="block text-gray-700 text-sm required">Distance (km)</label>
+                                        <input type="number" id="swimming-distance" name="swimming-distance" step="0.1" min="0" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                                        <p id="swimming-distance-error" class="error-message hidden"></p>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="swimming-time" class="block text-gray-700 text-sm required">Time (hh:mm:ss)</label>
+                                        <input type="text" id="swimming-time" name="swimming-time" placeholder="e.g., 01:30:00" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                                        <p id="swimming-time-error" class="error-message hidden"></p>
+                                    </div>
+                                    <div>
+                                        <label for="swimming-heartRate" class="block text-gray-700 text-sm">Heart Rate (bpm)</label>
+                                        <input type="number" id="swimming-heartRate" name="swimming-heartRate" min="0" max="220" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                                        <p id="swimming-heartRate-error" class="error-message hidden"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="flex items-center">
+                                    {{ form.cycling(class="sport-checkbox mr-2 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded") }}
+                                    <span class="text-gray-700">Cycling</span>
+                                </label>
+                                <div class="sport-details cycling-details">
+                                    <div class="mb-2">
+                                        <label for="cycling-distance" class="block text-gray-700 text-sm required">Distance (km)</label>
+                                        <input type="number" id="cycling-distance" name="cycling-distance" step="0.1" min="0" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                                        <p id="cycling-distance-error" class="error-message hidden"></p>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="cycling-time" class="block text-gray-700 text-sm required">Time (hh:mm:ss)</label>
+                                        <input type="text" id="cycling-time" name="cycling-time" placeholder="e.g., 01:30:00" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                                        <p id="cycling-time-error" class="error-message hidden"></p>
+                                    </div>
+                                    <div>
+                                        <label for="cycling-heartRate" class="block text-gray-700 text-sm">Heart Rate (bpm)</label>
+                                        <input type="number" id="cycling-heartRate" name="cycling-heartRate" min="0" max="220" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                                        <p id="cycling-heartRate-error" class="error-message hidden"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="flex items-center">
+                                    {{ form.running(class="sport-checkbox mr-2 h-5 w-5 text-[#007bff] accent-[#1a73e8] focus:ring-[#007bff] border-gray-300 rounded") }}
+                                    <span class="text-gray-700">Running</span>
+                                </label>
+                                <div class="sport-details running-details">
+                                    <div class="mb-2">
+                                        <label for="running-distance" class="block text-gray-700 text-sm required">Distance (km)</label>
+                                        <input type="number" id="running-distance" name="running-distance" step="0.1" min="0" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                                        <p id="running-distance-error" class="error-message hidden"></p>
+                                    </div>
+                                    <div class="mb-2">
+                                        <label for="running-time" class="block text-gray-700 text-sm required">Time (hh:mm:ss)</label>
+                                        <input type="text" id="running-time" name="running-time" placeholder="e.g., 01:30:00" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                                        <p id="running-time-error" class="error-message hidden"></p>
+                                    </div>
+                                    <div>
+                                        <label for="running-heartRate" class="block text-gray-700 text-sm">Heart Rate (bpm)</label>
+                                        <input type="number" id="running-heartRate" name="running-heartRate" min="0" max="220" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2a917a] transition duration-200">
+                                        <p id="running-heartRate-error" class="error-message hidden"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="manualError" class="text-center text-[#dc3545] mb-4 hidden"></div>
+                    <div id="manualSuccess" class="text-center text-[#1a73e8] mb-4 hidden">Data submitted successfully!</div>
+                    <div class="text-center">
+                        <button type="submit" class="w-full bg-[#1a73e8] text-white py-3 rounded-md hover:bg-[#0056b3] transition duration-300">Submit Workout</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- CSV Upload Tab -->
+            <div id="csv" class="tab-pane">
+                <form id="csvForm" method="POST" enctype="multipart/form-data" class="space-y-6">
+                    {{ csv_form.hidden_tag() }}
+                    <div class="mb-4">
+                        <span class="block text-gray-700 font-semibold mb-1 required">Upload CSV File</span>
+                        <input type="file" id="csvFile" accept=".csv" class="hidden" multiple {{ 'required' if csv_form.csv_file.validators else '' }}>
+                        <label for="csvFile">
+                            <div id="dropArea" class="drop-area">
+                                <span class="mb-2 block text-xl font-semibold text-[#07074D]">Drop files here</span>
+                                <span class="mb-2 block text-base font-medium text-[#6B7280]">Or</span>
+                                <span class="mb-2 block text-xl font-semibold text-[#07074D]">Browse</span>
+                            </div>
+                        </label>
+                        <div id="fileList" class="mt-4"></div>
+                        <p class="text-gray-600 text-sm mt-2">CSV format: date (YYYY-MM-DD), sport (swimming/cycling/running), distance (km), time (hh:mm:ss), heart_rate (bpm, optional)</p>
+                    </div>
+
+                    <div id="csvError" class="text-center mb-4 hidden"></div>
+                    <div id="csvSuccess" class="text-center text-[#1a73e8] mb-4 hidden">File uploaded successfully!</div>
+                    <div class="text-center">
+                        <button type="submit" id="uploadCsvBtn" class="w-full bg-[#1a73e8] text-white py-3 rounded-md hover:bg-[#0056b3] transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>Upload CSV</button>
+                    </div>
+                </form>
+            </div>
+
+            <p id="globalSuccessMessage" class="text-center text-green-600 font-semibold mt-4 hidden"></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
