@@ -15,7 +15,7 @@
       <div class="modal-card-form">
         <h2>Login</h2>
         <br/>
-        
+
         <form id="loginForm" action="/login" method="post">
         {{ form.hidden_tag() }}
         <p>
@@ -36,6 +36,7 @@
         <br/>
         <p>{{ form.submit() }}</p>
             <p class="login-link">Don't have an account? <a href="{{ url_for('signup') }}">Sign up here</a></p>
+            <a href="/" class="back-home-mobile">← Back to Home Page</a>
         </form>
       </div>
     </div>

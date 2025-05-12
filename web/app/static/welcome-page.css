@@ -222,6 +222,14 @@ input.submit:hover {
   text-decoration: underline;
 }
 
+.back-home-mobile {
+  display: none;
+  color: blue;
+  text-decoration: underline;
+  font-size: 16px;
+  margin: 10px;
+}
+
 /* if already logined */
 .user-menu {
   display: flex;
@@ -539,6 +547,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .back-home-mobile {
+    display: inline-block;
+  }
+  
   .hero-content {
     flex-direction: column;
   }
