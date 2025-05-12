@@ -119,3 +119,14 @@ overlay.addEventListener("click", function () {
   overlay.style.display = "none";
 });
 });
+
+document.querySelectorAll('.modal-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    
+    const selected = tab.dataset.tab;
+    document.getElementById('login-form').style.display = selected === 'login' ? 'block' : 'none';
+    document.getElementById('signup-form').style.display = selected === 'signup' ? 'block' : 'none';
+  });
+});

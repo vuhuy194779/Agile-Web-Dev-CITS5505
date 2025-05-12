@@ -1,101 +1,100 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-text">
-          <h1>Track Your Triathlon Journey</h1>
-          <p>
-            TriTrack helps you monitor, analyze, and improve your swimming, cycling, and running performance with intuitive tools designed
-            specifically for triathletes.
-          </p>
-          <div class="hero-buttons">
-            <a href="{{ url_for('signup') }}" id="signup-btn">Sign Up</a>
-          </div>
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>Track Your Triathlon Journey</h1>
+        <p>
+          TriTrack helps you monitor, analyze, and improve your swimming, cycling, and running performance with intuitive tools designed specifically
+          for triathletes.
+        </p>
+        <div class="hero-buttons">
+          {% if current_user.is_anonymous %}
+          <a href="{{ url_for('signup') }}" id="signup-btn">Sign Up</a>
+          {% else %}
+          <a href="#" class="btn" id="**************need to change">See My Track</a>
+          {% endif %}
         </div>
-        <div class="hero-image">
-          <img
-            src="{{ url_for('static', filename='hero-image.png') }}"
-            alt="Triathlon Training" />
-        </div>
+      </div>
+      <div class="hero-image">
+        <img src="{{ url_for('static', filename='hero-image.png') }}" alt="Triathlon Training" />
       </div>
     </div>
-  </section>
-  <!-- Features Section -->
-  <section class="features" id="features">
-    <div class="container">
-      <div class="section-header">
-        <h2>Comprehensive Triathlon Tracking</h2>
-        <p>TriTrack offers everything you need to prepare for your next triathlon event, from detailed workout analytics to race planning tools.</p>
+  </div>
+</section>
+<!-- Features Section -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-header">
+      <h2>Comprehensive Triathlon Tracking</h2>
+      <p>TriTrack offers everything you need to prepare for your next triathlon event, from detailed workout analytics to race planning tools.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🏊</div>
+        <h3>Swim Tracking</h3>
+        <p>Record laps, split times, stroke efficiency, and pool workouts. Analyze your swimming technique and improve your performance.</p>
       </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🏊</div>
-          <h3>Swim Tracking</h3>
-          <p>Record laps, split times, stroke efficiency, and pool workouts. Analyze your swimming technique and improve your performance.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🚴</div>
-          <h3>Bike Analytics</h3>
-          <p>Track routes, speed, power output, cadence, and elevation. Understand your cycling strengths and weaknesses.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🏃</div>
-          <h3>Run Metrics</h3>
-          <p>Monitor pace, distance, stride length, and heart rate zones. Optimize your running technique for race day.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">📈</div>
-          <h3>Performance Analysis</h3>
-          <p>
-            Get detailed insights with advanced analytics that help identify patterns and improvement opportunities across all three disciplines.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">🏅</div>
-          <h3>Race Planning</h3>
-          <p>Create detailed race strategies, set transition goals, and prepare for your next triathlon with confidence.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon">👥</div>
-          <h3>Community & Sharing</h3>
-          <p>Connect with fellow triathletes, share achievements, and motivate each other in your triathlon journey.</p>
-        </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚴</div>
+        <h3>Bike Analytics</h3>
+        <p>Track routes, speed, power output, cadence, and elevation. Understand your cycling strengths and weaknesses.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏃</div>
+        <h3>Run Metrics</h3>
+        <p>Monitor pace, distance, stride length, and heart rate zones. Optimize your running technique for race day.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3>Performance Analysis</h3>
+        <p>Get detailed insights with advanced analytics that help identify patterns and improvement opportunities across all three disciplines.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏅</div>
+        <h3>Race Planning</h3>
+        <p>Create detailed race strategies, set transition goals, and prepare for your next triathlon with confidence.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3>Community & Sharing</h3>
+        <p>Connect with fellow triathletes, share achievements, and motivate each other in your triathlon journey.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- How It Works Section -->
-  <section class="how-it-works" id="how-it-works">
-    <div class="container">
-      <div class="section-header">
-        <h2>How TriTrack Works</h2>
-        <p>Get started in minutes and take your triathlon training to the next level with our easy-to-use platform.</p>
+<!-- How It Works Section -->
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2>How TriTrack Works</h2>
+      <p>Get started in minutes and take your triathlon training to the next level with our easy-to-use platform.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Create Account</h3>
+        <p>Sign up and set your personal goals and triathlon experience level.</p>
       </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <h3>Create Account</h3>
-          <p>Sign up and set your personal goals and triathlon experience level.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <h3>Track Workouts</h3>
-          <p>Record your swims, rides, and runs manually or import from your devices.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <h3>Analyze Data</h3>
-          <p>View detailed analytics and insights about your performance.</p>
-        </div>
-        <div class="step">
-          <div class="step-number">4</div>
-          <h3>Improve & Share</h3>
-          <p>Follow recommendations, improve your times, and share your progress.</p>
-        </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Track Workouts</h3>
+        <p>Record your swims, rides, and runs manually or import from your devices.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Analyze Data</h3>
+        <p>View detailed analytics and insights about your performance.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Improve & Share</h3>
+        <p>Follow recommendations, improve your times, and share your progress.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 {% endblock %}
