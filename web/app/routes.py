@@ -1,11 +1,12 @@
-from flask import request, render_template, redirect, url_for, flash, jsonify
+from flask import request, render_template, redirect, url_for, flash, jsonify, current_app
 from flask_login import current_user, login_user, logout_user, login_required
-from app.forms import LoginForm, SignupForm, UploadForm, CSVUploadForm
+from app.forms import LoginForm, SignupForm, UploadForm, CSVUploadForm, ProfileForm, PasswordForm
 from app.models import User, Workout
 from app import app, db
 from datetime import datetime
 import csv
 from io import StringIO
+
 
 # Route: Homepage
 @app.route('/')
@@ -139,6 +140,53 @@ def upload_csv():
     except Exception as e:
         db.session.rollback()
         return jsonify({'error': str(e)}), 500
+
+@app.route('/personal', methods=['GET'])
+@login_required
+def personal():
+    profile_form = ProfileForm(current_user.email)
+    password_form = PasswordForm()
+    
+    profile_form.email.data = current_user.email
+    
+    return render_template('personal file.html', 
+                         title='Personal Data', 
+                         profile_form=profile_form,
+                         password_form=password_form)
+
+@app.route('/update_profile', methods=['POST'])
+@login_required
+def update_profile():
+    form = ProfileForm(current_user.email)
+    if form.validate_on_submit():
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Update successfully', 'success')
+    else:
+        for field, errors in form.errors.items():
+            for error in errors:
+                flash(f'{getattr(form, field).label.text}: {error}', 'danger')
+    
+    return redirect(url_for('personal'))
+
+@app.route('/change_password', methods=['POST'])
+@login_required
+def change_password():
+    form = PasswordForm()
+    if form.validate_on_submit():
+        if not current_user.check_password(form.current_password.data):
+            flash('wrong password', 'danger')
+            return redirect(url_for('personal'))
+        
+        current_user.set_password(form.new_password.data)
+        db.session.commit()
+        flash('Update successfully', 'success')
+    else:
+        for field, errors in form.errors.items():
+            for error in errors:
+                flash(f'{getattr(form, field).label.text}: {error}', 'danger')
+    
+    return redirect(url_for('personal'))
 
 # # Route: Forgot Password Page, need to add forgot password page
 # @app.route('/forgot-password')
