@@ -52,7 +52,7 @@
             <a href="{{ url_for('login') }}" id="login-btn">Login</a>
             {% else %}
             <div class="user-menu" onclick="toggleDropdown()">
-              <img src="{{ url_for('static', filename='avatars/' + (current_user.avatar or 'default_avatar.png')) }}" class="avatar" alt="avatar" />
+              <img src="/static/default.jpg" class="avatar" alt="avatar" />
               <span>{{ current_user.username }}</span>
               <div id="dropdown" class="dropdown hidden">
                 <a href="/personal">Personal Data</a>
