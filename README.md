@@ -28,7 +28,7 @@ In the terminal, run the following command
 
 ```
 cd web
-pip install -r requirement.txt
+pip install -r requirements.txt
 flask db upgrade
 flask run
 ```

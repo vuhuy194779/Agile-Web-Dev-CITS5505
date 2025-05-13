@@ -1,57 +1,56 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <!-- Sign Up Modal -->
 <div id="signUpModal" class="signup-modal">
-    <div class="modal-card">
-      <!-- Left: image/text -->
-      <div class="modal-card-image">
-        <div class="overlay-text">
-          <h1 class="modal-h1">Track Your Triathlon Journey</h1>
-          <p>Get ready to transform your journey, track your progress!</p>
-        </div>
-      </div>
-  
-      <!-- Right: form -->
-      <div class="modal-card-form">
-        <h2>Sign Up</h2>
-        <form id="signUpForm" action="/signup" method="post">
-            {{ form.hidden_tag() }}
-            <p>
-                {{ form.username.label }}<br>
-                {{ form.username(size=64) }}<br>
-                {% for error in form.username.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.email.label }}<br>
-                {{ form.email(size=64) }}<br>
-                {% for error in form.email.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.password.label }}<br>
-                {{ form.password(size=64) }}<br>
-                {% for error in form.password.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>
-                {{ form.password2.label }}<br>
-                {{ form.password2(size=64) }}<br>
-                {% for error in form.password2.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
-            </p>
-            <p>   
-                {{ form.submit() }} 
-            </p>
-        </form>
+  <div class="modal-card">
+    <!-- Left: image/text -->
+    <div class="modal-card-image">
+      <div class="overlay-text">
+        <h1 class="modal-h1">Track Your Triathlon Journey</h1>
+        <p>Get ready to transform your journey, track your progress!</p>
       </div>
     </div>
+
+    <!-- Right: form -->
+    <div class="modal-card-form">
+      <h2>Sign Up</h2>
+      <br/>
+      <form id="signUpForm" action="/signup" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+          {{ form.username.label }}<br />
+          {{ form.username(size=64, placeholder="Enter your username") }}<br />
+          {% for error in form.username.errors %}
+          <span style="color: red">[{{ error }}]</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.email.label }}<br />
+          {{ form.email(size=64, placeholder="Enter your email address") }}<br />
+          {% for error in form.email.errors %}
+          <span style="color: red">[{{ error }}]</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.password.label }}<br />
+          {{ form.password(size=64, placeholder="Enter your password") }}<br />
+          {% for error in form.password.errors %}
+          <span style="color: red">[{{ error }}]</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.password2.label }}<br />
+          {{ form.password2(size=64, placeholder="Confirm your password") }}<br />
+          {% for error in form.password2.errors %}
+          <span style="color: red">[{{ error }}]</span>
+          {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+        <br />
+        <p class="login-link">Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+        <a href="/" class="back-home-mobile">← Back to Home Page</a>
+      </form>
+    </div>
   </div>
-  
-  
+</div>
+
 {% endblock %}
