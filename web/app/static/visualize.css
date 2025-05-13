@@ -1,0 +1,176 @@
+body {
+    background: linear-gradient(to right, #1e3c72, #2a5298, #2a917a);
+    /* Background gradient */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-page {
+    padding-top: 4rem;
+    box-sizing: border-box;
+}
+
+.dashboard-page .container {
+    max-width: 1200px;
+    width: 90%;
+    margin: 1rem auto;
+    padding: 2rem;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.dashboard-page h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.dashboard-page h3 {
+    text-align: center;
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.dashboard-page .chart-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.dashboard-page .chart-section>div {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+/* Style for each chart */
+.dashboard-page .chart-section canvas {
+    width: 100% !important;
+    height: 300px !important;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Period selection dropdown container */
+.dashboard-page .period-options {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 2rem 0 0;
+    position: sticky;
+    /* Stick to top on scroll (desktop only) */
+    top: 1rem;
+    z-index: 50;
+    background-color: rgba(30, 60, 114, 0.9);
+    /* Semi-transparent background */
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    /* Blur background */
+}
+
+/* Dropdown style */
+.dashboard-page .period-options select {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+}
+
+/* Calendar outer container */
+.dashboard-page .calendar-wrapper {
+    background: #ffffff;
+    margin: 2rem auto;
+    max-width: 500px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Calendar header with navigation */
+.dashboard-page .calendar-header {
+    background: #5c9eff;
+    text-align: center;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.dashboard-page .calendar-header button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0 1rem;
+}
+
+.dashboard-page .calendar-content {
+    padding: 1rem 2rem 2rem;
+    background: #fff;
+    color: #333;
+}
+
+.dashboard-page .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    text-align: center;
+}
+
+.dashboard-page .weekday-label {
+    font-weight: bold;
+    color: #333;
+    padding: 0.5rem 0;
+}
+
+.dashboard-page .calendar-grid div {
+    padding: 10px;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.dashboard-page .day {
+    cursor: pointer;
+}
+
+.dashboard-page .day.marked {
+    background: #4da6ff;
+    color: #fff;
+    font-weight: bold;
+}
+
+.dashboard-page .day:hover {
+    background: #d0e8ff;
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+    .dashboard-page {
+        padding-top: 2rem;
+    }
+
+    .dashboard-page .chart-section {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-page .calendar-wrapper {
+        margin: 1rem;
+    }
+
+    .dashboard-page .period-options {
+        position: relative;
+        margin: 1rem auto 0 auto;
+        justify-content: center;
+        background-color: transparent;
+        backdrop-filter: none;
+        padding: 0;
+    }
+}
