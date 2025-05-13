@@ -3,10 +3,11 @@ body {
     /* Background gradient */
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
+    padding: 2rem 0 0 0;
 }
 
 .container {
+    margin-top: 1rem;
     padding: 2rem;
     color: #fff;
     /* White text on dark background */
@@ -35,13 +36,13 @@ canvas {
     background-color: #fff;
     border-radius: 12px;
     padding: 1rem;
-    width: 350px !important;
-    height: 280px !important;
+    width: 500px;
+    height: 400px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* Period selection dropdown container */
-.period-options {
+c .period-options {
     display: flex;
     justify-content: flex-end;
     margin: 1rem 2rem 0 0;

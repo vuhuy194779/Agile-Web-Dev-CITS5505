@@ -4,13 +4,16 @@ const calendarGrid = document.getElementById("day-grid");
 const prevBtn = document.getElementById("prev-month");
 const nextBtn = document.getElementById("next-month");
 let currentDate = new Date();
+let selectedDate = currentDate.toISOString().slice(0, 10);
 
-const mockMarkedDates = [
-    "2025-04-01", "2025-04-03", "2025-04-06", "2025-04-07",
-    "2025-04-09", "2025-04-11", "2025-04-12", "2025-04-17",
-    "2025-04-19", "2025-04-25", "2025-04-26"];
+async function loadMarkedDates() {
+    const y = currentDate.getFullYear();
+    const m = currentDate.getMonth() + 1;
+    const res = await fetch(`/api/marked_dates?year=${y}&month=${m}`);
+    return res.ok ? await res.json() : [];
+}
 
-function renderCalendar(date) {
+async function renderCalendar(date) {
     const year = date.getFullYear();
     const month = date.getMonth();
     const firstDay = new Date(year, month, 1);
