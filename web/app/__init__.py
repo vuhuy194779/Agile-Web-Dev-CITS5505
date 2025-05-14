@@ -11,5 +11,7 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 
 from app import routes, models
+from app.api import api as api_bp
+app.register_blueprint(api_bp)
 
 app.debug = True

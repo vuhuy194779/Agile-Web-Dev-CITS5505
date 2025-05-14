@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 
 {% block styles %}
-<link rel="stylesheet" href="/static/visualize.css">
-{% endblock%}
+<!-- Dashboard-specific CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='visualize.css') }}" />
+{% endblock %}
 
 {% block content %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script defer src="/static/visualize.js"></script>
-
 <div class="dashboard-page">
     <!-- Punch-in Calendar Display -->
     <div class="container">
@@ -42,6 +40,7 @@
         </select>
     </div>
 
+    <!-- Charts Section -->
     <div class="container">
         <h2>Triathlon Training Visualization</h2>
         <div class="chart-section">
@@ -57,14 +56,18 @@
                 <h3>Average Speed</h3>
                 <canvas id="speedChart"></canvas>
             </div>
-
             <div>
                 <h3>Average Heart Rate</h3>
                 <canvas id="heartRateChart"></canvas>
             </div>
-
         </div>
     </div>
 </div>
+{% endblock %}
 
+{% block scripts %}
+<!-- Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Dashboard-specific JS -->
+<script defer src="{{ url_for('static', filename='visualize.js') }}"></script>
 {% endblock %}
