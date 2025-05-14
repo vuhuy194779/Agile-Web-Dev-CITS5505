@@ -1,6 +1,5 @@
 body {
     background: linear-gradient(to right, #1e3c72, #2a5298, #2a917a);
-    /* Background gradient */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -46,7 +45,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Style for each chart */
 .dashboard-page .chart-section canvas {
     width: 100% !important;
     height: 300px !important;
@@ -55,24 +53,19 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Period selection dropdown container */
 .dashboard-page .period-options {
     display: flex;
     justify-content: flex-end;
     margin: 1rem 2rem 0 0;
     position: sticky;
-    /* Stick to top on scroll (desktop only) */
     top: 1rem;
     z-index: 50;
     background-color: rgba(30, 60, 114, 0.9);
-    /* Semi-transparent background */
     padding: 0.5rem 1rem;
     border-radius: 10px;
     backdrop-filter: blur(4px);
-    /* Blur background */
 }
 
-/* Dropdown style */
 .dashboard-page .period-options select {
     padding: 0.5rem 1rem;
     font-size: 1rem;
@@ -90,7 +83,6 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Calendar header with navigation */
 .dashboard-page .calendar-header {
     background: #5c9eff;
     text-align: center;
@@ -131,27 +123,46 @@ body {
     padding: 0.5rem 0;
 }
 
+/* base style for each calendar cell */
 .dashboard-page .calendar-grid div {
     padding: 10px;
     border-radius: 50%;
     transition: background 0.3s;
 }
 
-.dashboard-page .day {
+/* make day cells visible and non-selectable, pointer cursor */
+.dashboard-page #day-grid .day {
+    background-color: #f9f9f9;
+    color: #333;
+    border: 1px solid #ddd;
     cursor: pointer;
+    /* show pointer on hover/click */
+    user-select: none;
+    /* prevent text-selection cursor */
 }
 
-.dashboard-page .day.marked {
-    background: #4da6ff;
+/* style for days that have workout records */
+.dashboard-page #day-grid .day.marked {
+    background: #ff4d4d;
+    /* red for marked days */
     color: #fff;
     font-weight: bold;
 }
 
+/* style for the currently selected day */
+.dashboard-page #day-grid .day.selected {
+    background: #0056b3;
+    /* dark blue highlight */
+    color: #fff;
+    border: 2px solid #003766;
+    /* thicker border */
+}
+
+/* hover effect on any day cell */
 .dashboard-page .day:hover {
     background: #d0e8ff;
 }
 
-/* Responsive adjustments for smaller screens */
 @media screen and (max-width: 768px) {
     .dashboard-page {
         padding-top: 2rem;

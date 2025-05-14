@@ -13,6 +13,7 @@ def marked_dates():
     year = int(request.args.get('year', now_utc.year))
     month = int(request.args.get('month', now_utc.month))
 
+    ## Query distinct workout dates for this user/month
     rows = (
         Workout.query
         .with_entities(func.date(Workout.workout_date).label('d'))
@@ -22,7 +23,8 @@ def marked_dates():
         .group_by('d')
         .all()
     )
-    dates = [r.d.isoformat() for r in rows]
+    ## r.d is already a 'YYYY-MM-DD' string
+    dates = [r.d for r in rows]
     return jsonify(dates)
 
 @api.route('/workouts')
@@ -49,6 +51,7 @@ def get_workouts():
     q = Workout.query.filter_by(user_id=current_user.id)
 
     if period == 'day':
+        ## Aggregate for a single day
         rows = q.filter(func.date(Workout.workout_date) == base_date).all()
         for sport in sports:
             subs = [w for w in rows if w.sport == sport]
@@ -64,8 +67,10 @@ def get_workouts():
         return jsonify(result)
 
     if period == 'week':
+        ## Calculate week start (Monday) and end
         monday = base_date - timedelta(days=base_date.weekday())
         week_dates = [monday + timedelta(days=i) for i in range(7)]
+        ## Totals per sport over the week
         for sport in sports:
             subs = (
                 q.filter(Workout.sport == sport)
@@ -77,6 +82,7 @@ def get_workouts():
             dur = sum(w.time / 3600 for w in subs)
             result['distance'].append(round(dist, 2))
             result['duration'].append(round(dur, 2))
+        ## Day-by-day speed and heart rate
         for d in week_dates:
             day_rows = q.filter(func.date(Workout.workout_date) == d).all()
             day_speed, day_hr = [], []
@@ -94,10 +100,12 @@ def get_workouts():
         return jsonify(result)
 
     if period == 'month':
+        ## Calculate month boundaries
         y, m = base_date.year, base_date.month
         first_day = date(y, m, 1)
         next_month = date(y + (m // 12), (m % 12) + 1, 1)
         last_day = next_month - timedelta(days=1)
+        ## Totals per sport for the full month
         for sport in sports:
             subs = (
                 q.filter(Workout.sport == sport)
@@ -109,6 +117,7 @@ def get_workouts():
             dur = sum(w.time / 3600 for w in subs)
             result['distance'].append(round(dist, 2))
             result['duration'].append(round(dur, 2))
+        ## Split month into 4 segments for trends
         segments = [(1,7), (8,14), (15,21), (22, last_day.day)]
         for start_d, end_d in segments:
             seg_start = date(y, m, start_d)
