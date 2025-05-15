@@ -1,6 +1,11 @@
 # Web Application for Training Tracking
 
 ## Project Purpose
+
+The purpose of this project is to develop a comprehensive and user-friendly application that enables triathlon athletes to track, monitor, and analyze their performance across swimming, cycling, and running. By offering functionalities such as data upload (both manually and via CSV files), share and interactive dashboards, the application aims to simplify the process of managing triathlon training data. Users can effortlessly record their heart rate, distance, date, and time for each activity, with the flexibility to select multiple activities for a single date entry.
+
+In addition to data logging, the application provides a calendar view to highlight current and past training sessions, offering athletes clear visibility into their workout history. A dedicated dashboard visualizes performance metrics, allowing users to track progress over time, identify trends, and make data-driven adjustments to their training routines. Through this application, triathlon athletes can enhance their preparation, optimize their training strategy, and achieve their endurance goals more effectively.
+
 ### What is a Triathlon?
 A triathlon is a multi-discipline endurance race consisting of swimming, cycling, and running performed in immediate succession. The most recognized formats include:
 
