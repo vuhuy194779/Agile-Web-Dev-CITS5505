@@ -1,22 +1,3 @@
-// this is the user auchentication part
-// $("#login").on("submit", function (e) {
-//   e.preventDefault();
-//   $.ajax({
-//     url: "{{ url_for('login') }}", //flask url
-//     method: "POST",
-//     data: {
-//       username: $("#username").val(),
-//       password: $("#password").val(),
-//     },
-//     success: function (response) {
-//       $(".status").text("✅ Login successful! Redirecting...");
-//       window.location.href = "{{ url_for('dashboard') }}"; //success redirect to dashboard
-//     },
-//     error: function () {
-//       $(".status").text("❌ Login failed. Please check your credentials.");
-//     },
-//   });
-// });
 
 document.addEventListener("DOMContentLoaded", function () {
   const menuBtn = document.querySelector(".mobile-menu-btn");
