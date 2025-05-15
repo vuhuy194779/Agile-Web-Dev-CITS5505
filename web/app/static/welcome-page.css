@@ -380,6 +380,13 @@ input.submit:hover {
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
+.hero-buttons a {
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  padding: 6px 12px;
+  text-decoration: none;
+}
 
 /* Features Section */
 .features {
