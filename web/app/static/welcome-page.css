@@ -148,7 +148,8 @@ nav ul li a:hover {
 
 /* mobile button */
 .mobile-menu-btn {
-  display: none; /* default hide */
+  display: none;
+  /* default hide */
   background: none;
   border: none;
   font-size: 1.5rem;
@@ -689,6 +690,7 @@ footer {
   font-size: 32px;
   margin-bottom: 10px;
 }
+
 .modal-card-image .overlay-text p {
   font-size: 16px;
 }
@@ -753,4 +755,21 @@ footer {
 
 .modal-h1 {
   color: white;
+}
+
+#see-track-btn {
+  background: #fff;
+  color: #1a73e8;
+  border: 2px solid #fff;
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 10px 24px;
+  box-shadow: 0 2px 8px rgba(26, 115, 232, 0.08);
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+#see-track-btn:hover {
+  background: #e3f0fd;
+  color: #0b3ea9;
+  border: 2px solid #1a73e8;
 }
