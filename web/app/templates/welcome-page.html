@@ -14,7 +14,7 @@
           {% if current_user.is_anonymous %}
           <a href="{{ url_for('signup') }}" id="signup-btn">Sign Up</a>
           {% else %}
-          <a href="#" class="btn" id="**************need to change">See My Track</a>
+          <a href="{{ url_for('dashboard') }}" class="highlight">Go to My Dashboard</a>
           {% endif %}
         </div>
       </div>
