@@ -149,7 +149,7 @@ def personal():
     
     profile_form.email.data = current_user.email
     
-    return render_template('personal file.html', 
+    return render_template('personal-file.html', 
                          title='Personal Data', 
                          profile_form=profile_form,
                          password_form=password_form)
