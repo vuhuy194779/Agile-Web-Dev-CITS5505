@@ -6,7 +6,6 @@ The purpose of this project is to develop a comprehensive and user-friendly appl
 
 In addition to data logging, the application provides a calendar view to highlight current and past training sessions, offering athletes clear visibility into their workout history. A dedicated dashboard visualizes performance metrics, allowing users to track progress over time, identify trends, and make data-driven adjustments to their training routines. Through this application, triathlon athletes can enhance their preparation, optimize their training strategy, and achieve their endurance goals more effectively.
 
-
 ### What is a Triathlon?
 
 A triathlon is a multi-discipline endurance race consisting of swimming, cycling, and running performed in immediate succession. The most recognized formats include:
@@ -60,3 +59,16 @@ flask run
 ```
 
 ## Test
+
+In your terminal with the enviroment activated run unittest with
+
+```
+python -m test.unittest
+```
+
+For selenium, you need to have flask application running and in another terminal run
+
+```
+python -m test.selenium
+
+```
