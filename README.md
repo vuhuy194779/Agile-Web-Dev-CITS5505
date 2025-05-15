@@ -24,10 +24,31 @@ Each distance typically has a cut-off time. For full Ironman races, athletes mus
 
 ## Instruction
 
+You must have installed Python version >= 3.9
+
 In the terminal, run the following command
 
 ```
 cd web
+```
+
+Then for windows users run
+
+```
+py -3 -m venv .venv
+.venv/Scripts/activate
+```
+
+Or if you're a Mac/Linux user
+
+```
+python3 -m venv .venv
+.venv/bin/activate
+```
+
+And follow these command to open the application
+
+```
 pip install -r requirements.txt
 flask db upgrade
 flask run

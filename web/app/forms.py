@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, FileField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, FileField, SelectMultipleField, widgets
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User
 
@@ -58,3 +58,8 @@ class PasswordForm(FlaskForm):
     new_password = PasswordField('New Password', validators=[DataRequired()])
     new_password2 = PasswordField('Repeat New Password', validators=[DataRequired(), EqualTo('new_password')])
     submit = SubmitField('Change Password')
+
+class ShareDataForm(FlaskForm):
+    workouts = SelectMultipleField('Workouts to Share', coerce=int, option_widget=widgets.CheckboxInput(), validators=[DataRequired()])
+    users = SelectMultipleField('Share with Users', coerce=int, option_widget=widgets.CheckboxInput(), validators=[DataRequired()])
+    submit = SubmitField('Share')

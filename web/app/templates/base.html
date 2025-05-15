@@ -18,7 +18,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <!-- Upload page JS (恢复原加载) -->
+  <!-- Upload page JS  -->
   <script src="{{ url_for('static', filename='upload.js') }}"></script>
 </head>
 
@@ -41,23 +41,21 @@
             <li><a href="#how-it-works">Processes</a></li>
             {% else %}
             <li>
-              <a href="{{ url_for('dashboard') }}" class="highlight">Dashboard</a>
-            </li>
-            <li>
               <a href="{{ url_for('upload') }}" class="highlight">Upload</a>
             </li>
-            <li><a href="#" class="highlight">Share</a></li>
+            <li><a href="{{ url_for('share') }}" class="highlight">Share</a></li>
             {% endif %}
           </ul>
           {% if not current_user.is_anonymous %}
           <div class="right-group">
             <div class="search-container">
-              <form action="#" method="get" class="search-form">
-                <input type="text" name="search" placeholder="Search..." class="search-input" />
-                <button type="submit" class="search-button">
-                  <i class="fas fa-search"></i>
-                </button>
-              </form>
+                <form action="#" method="get" class="search-form">
+                    <input type="text" id="user-search" class="user-search" placeholder="Search users..." autocomplete="off" />
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div id="user-dropdown" class="dropdown-search"></div>
+                </form>
             </div>
           </div>
           {% endif %}
@@ -70,7 +68,7 @@
           <a href="{{ url_for('login') }}" id="login-btn">Login</a>
           {% else %}
           <div class="user-menu" onclick="toggleDropdown()">
-            <img src="{{ url_for('static', filename='avatars/' + (current_user.avatar or 'default_avatar.png')) }}"
+            <img src="{{ url_for('static', filename='default.jpg') }}"
               class="avatar" alt="avatar" />
             <span>{{ current_user.username }}</span>
             <div id="dropdown" class="dropdown hidden">

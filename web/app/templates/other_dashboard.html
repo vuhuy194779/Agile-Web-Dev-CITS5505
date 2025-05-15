@@ -6,10 +6,10 @@
 {% endblock %}
 
 {% block content %}
-<div class="dashboard-page">
+<div class="dashboard-page" data-user-id="{{ user.id }}">
     <!-- Punch-in Calendar Display -->
     <div class="container">
-        <h1 class="text-3xl font-bold text-white text-center mb-6 drop-shadow-lg">Triathlon Training Visualization</h1>
+        <h1 class="text-3xl font-bold text-white text-center mb-6 drop-shadow-lg">{{ user.username }} Training Visualization</h1>
 
         <!-- Period Selection Dropdown -->
         <div class="period-options">
@@ -70,5 +70,5 @@
 <!-- Chart.js library -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!-- Dashboard-specific JS -->
-<script defer src="{{ url_for('static', filename='visualize.js') }}"></script>
+<script defer src="{{ url_for('static', filename='other_visualize.js') }}"></script>
 {% endblock %}
