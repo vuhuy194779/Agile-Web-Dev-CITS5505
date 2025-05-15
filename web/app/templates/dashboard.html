@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<!-- Dashboard-specific CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='visualize.css') }}" />
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-page">
+    <!-- Punch-in Calendar Display -->
+    <div class="container">
+        <div class="calendar-wrapper">
+            <div class="calendar-header">
+                <button id="prev-month">&#8249;</button>
+                <div id="calendar-month">Month</div>
+                <button id="next-month">&#8250;</button>
+            </div>
+            <div class="calendar-content">
+                <div class="calendar-grid">
+                    <div class="weekday-label">S</div>
+                    <div class="weekday-label">M</div>
+                    <div class="weekday-label">T</div>
+                    <div class="weekday-label">W</div>
+                    <div class="weekday-label">T</div>
+                    <div class="weekday-label">F</div>
+                    <div class="weekday-label">S</div>
+                    <!-- Days will be rendered here -->
+                </div>
+                <div class="calendar-grid" id="day-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Period Selection Dropdown -->
+    <div class="period-options">
+        <select id="periodSelect">
+            <option value="day">Daily</option>
+            <option value="week">Weekly</option>
+            <option value="month">Monthly</option>
+        </select>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="container">
+        <h2>Triathlon Training Visualization</h2>
+        <div class="chart-section">
+            <div>
+                <h3>Training Distance</h3>
+                <canvas id="distanceChart"></canvas>
+            </div>
+            <div>
+                <h3>Exercise Time</h3>
+                <canvas id="timeChart"></canvas>
+            </div>
+            <div>
+                <h3>Average Speed</h3>
+                <canvas id="speedChart"></canvas>
+            </div>
+            <div>
+                <h3>Average Heart Rate</h3>
+                <canvas id="heartRateChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Dashboard-specific JS -->
+<script defer src="{{ url_for('static', filename='visualize.js') }}"></script>
+{% endblock %}

@@ -6,6 +6,7 @@ from app import app, db
 from datetime import datetime
 import csv
 from io import StringIO
+from sqlalchemy.exc import IntegrityError
 
 # Route: Homepage
 @app.route('/')
@@ -17,8 +18,8 @@ def homepage():
 @login_required
 def dashboard():
     # user = User.query.filter_by(username=current_user.username).first_or_404()
-    return render_template("welcome-page.html")
-    # return render_template("visulize.html", title="Home", user=user)
+    return render_template("dashboard.html", user=current_user)
+    # return render_template("dashboard.html", title="Home", user=user)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
