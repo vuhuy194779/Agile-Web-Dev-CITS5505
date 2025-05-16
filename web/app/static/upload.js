@@ -40,10 +40,8 @@ $(document).ready(function() {
                 const distance = $(`#${sport}-distance`).val();
                 const time = $(`#${sport}-time`).val();
                 const heartRate = $(`#${sport}-heartRate`).val();
-                console.log(distance, time, heartRate);
 
                 if (!distance || !time) {
-                    $('#manualError').text(`Please fill all required fields for ${sport}.`).removeClass('hidden');
                     return false;
                 }
 
@@ -57,7 +55,7 @@ $(document).ready(function() {
         });
 
         if (sportsData.length === 0) {
-            $('#manualError').text('Please select at least one sport.').removeClass('hidden');
+            $('#manualError').text('Please select at least one sport and fill in all required field for that sport.').removeClass('hidden');
             return;
         }
 
@@ -70,7 +68,7 @@ $(document).ready(function() {
                 'X-CSRF-Token': $('input[name="csrf_token"]').val()
             },
             success: function(response) {
-                $('#globalSuccessMessage').removeClass('hidden').text(response.message);
+                $('#globalSuccessMessage').addClass('text-green-600').removeClass('text-red-600').removeClass('hidden').text(response.message);
                 $('#manualForm')[0].reset();
                 $('.sport-details').hide();
                 $('input[name="swimming"], input[name="cycling"], input[name="running"]').prop('checked', false);
@@ -105,7 +103,7 @@ $(document).ready(function() {
                 'X-CSRF-Token': $('#csvForm input[name="csrf_token"]').val()
             },
             success: function(response) {
-                $('#globalSuccessMessage').removeClass('hidden').text(response.message);
+                $('#globalSuccessMessage').addClass('text-green-600').removeClass('text-red-600').removeClass('hidden').text(response.message);
                 $('#csvForm')[0].reset();
                 allFiles = [];
                 $('#fileList').empty();
