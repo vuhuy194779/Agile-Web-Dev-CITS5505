@@ -109,7 +109,7 @@ class TestWebApp(TestBase):
         self.wait_for_element(By.NAME, "password").send_keys("wrongpass")
         self.wait_for_element(By.NAME, "submit").click()
         # Should stay on login and show error
-        self.wait_for_element(By.CLASS_NAME, "alert-danger")
+        self.wait_for_element(By.CLASS_NAME, "flash-message")        
         self.assertIn("login", self.driver.current_url)
 
     def test_nav_login_signup_links(self):
