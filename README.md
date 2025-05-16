@@ -67,6 +67,9 @@ python -m test.selenium
 
 ```
 
+Acknowledge:
+In the homepage, some functions and buttons do not have actual functions. Please ignore them. They are only for decoration, for detail, please refer to the Project Purpose above.
+
 References:
 
 OpenAI. (2025).ChatGTP(May 10 free version) [Large language model]. https://chat.openai.com/chat
