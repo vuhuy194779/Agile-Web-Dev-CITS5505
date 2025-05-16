@@ -51,6 +51,9 @@ body {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .dashboard-page .period-options {
@@ -116,6 +119,9 @@ body {
     grid-template-columns: repeat(7, 1fr);
     gap: 10px;
     text-align: center;
+    width: 100%;
+    min-width: 0;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
 }
 
 .dashboard-page .weekday-label {
@@ -184,5 +190,72 @@ body {
         background-color: transparent;
         backdrop-filter: none;
         padding: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .dashboard-page .calendar-wrapper {
+        max-width: 100%;
+        border-radius: 8px;
+        margin: 0.5rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .dashboard-page .calendar-content {
+        padding: 0.5rem 0.5rem 1rem;
+    }
+
+    .dashboard-page .calendar-grid {
+        gap: 4px;
+    }
+
+    .dashboard-page .calendar-grid div {
+        padding: 6px;
+        font-size: 0.9rem;
+    }
+
+    .dashboard-page .chart-section {
+        gap: 0.7rem;
+    }
+
+    .dashboard-page .chart-section>div {
+        padding: 0.2rem;
+        border-radius: 8px;
+    }
+
+    .dashboard-page .chart-section canvas {
+        height: 160px !important;
+        border-radius: 5px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .dashboard-page .calendar-header {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    .dashboard-page .calendar-grid div {
+        padding: 3px;
+        font-size: 0.8rem;
+    }
+
+    .dashboard-page .chart-section canvas {
+        height: 110px !important;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .dashboard-page .chart-section {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .dashboard-page .chart-section>div {
+        padding: 0.5rem;
+    }
+
+    .dashboard-page .chart-section canvas {
+        height: 220px !important;
     }
 }
