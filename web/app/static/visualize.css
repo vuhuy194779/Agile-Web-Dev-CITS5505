@@ -190,6 +190,7 @@ body {
         background-color: transparent;
         backdrop-filter: none;
         padding: 0;
+        margin-bottom: 30px;
     }
 }
 
