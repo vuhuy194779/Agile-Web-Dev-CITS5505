@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block styles %}
+<!-- Dashboard-specific CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='share.css') }}" />
+{% endblock %}
+
+{% block content %}
+<div class=" min-h-screen flex flex-col items-center p-5 gradient-background">
+    <div class="mt-20 w-full max-w-2xl">
+        <h1 class="text-3xl font-bold text-white text-center mb-6 drop-shadow-lg">Share Your Training Data</h1>
+        <div class="bg-white p-8 rounded-xl shadow-2xl transform hover:scale-105 transition duration-300">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <p class="text-center text-{{ 'green' if category == 'success' else 'red' }}-600 font-semibold mb-4">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form method="POST" class="space-y-6">
+                {{ form.hidden_tag() }}
+                <div class="search-box">
+                    <label class="block text-gray-700 font-semibold mb-1">Select Workouts to Share</label>
+                    <input type="text" id="workouts-search" class="search-input" placeholder="Search workouts..." autocomplete="off">
+                    <div id="workouts-dropdown" class="dropdown-form">
+                        {% for value, label in form.workouts.choices %}
+                            <div class="dropdown-item" data-value="{{ value }}" data-label="{{ label }}">{{ label }}</div>
+                        {% endfor %}
+                    </div>
+                    <select id="workouts" name="workouts" multiple hidden>
+                        {% for value, label in form.workouts.choices %}
+                            <option value="{{ value }}">{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    <div id="selected-workouts" class="selected-items"></div>
+                    {% if form.workouts.errors %}
+                        <p class="text-red-600 text-sm mt-1">{{ form.workouts.errors[0] }}</p>
+                    {% endif %}
+                </div>
+                <div class="search-box">
+                    <label class="block text-gray-700 font-semibold mb-1">Select Users to Share With</label>
+                    <input type="text" id="users-search" class="search-input" placeholder="Search users..." autocomplete="off">
+                    <div id="users-dropdown" class="dropdown-form">
+                        {% for value, label in form.users.choices %}
+                            <div class="dropdown-item" data-value="{{ value }}" data-label="{{ label }}">{{ label }}</div>
+                        {% endfor %}
+                    </div>
+                    <select id="users" name="users" multiple hidden>
+                        {% for value, label in form.users.choices %}
+                            <option value="{{ value }}">{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    <div id="selected-users" class="selected-items"></div>
+                    {% if form.users.errors %}
+                        <p class="text-red-600 text-sm mt-1">{{ form.users.errors[0] }}</p>
+                    {% endif %}
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="bg-[#1a73e8] text-white px-6 py-3 rounded-md hover:bg-[#0056b3] transition duration-300">Share Data</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script defer src="{{ url_for('static', filename='share.js') }}"></script>
+{% endblock %}

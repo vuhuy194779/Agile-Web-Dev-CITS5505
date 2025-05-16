@@ -1,45 +1,51 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div id="loginModal" class="login-modal">
-    <div class="modal-card">
-      <!-- Left: image/text -->
-      <div class="modal-card-image">
-        <div class="overlay-text">
-          <h1 class="modal-h1">Welcome Back!</h1>
-          <p>Login to continue your journey!</p>
-        </div>
-      </div>
-  
-      <!-- Right: form -->
-      <div class="modal-card-form">
-        <h2>Login</h2>
-        <br/>
-
-        <form id="loginForm" action="/login" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=64, placeholder="Enter your username") }}<br>
-            {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=64, placeholder="Enter your password") }}<br>
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-        <br/>
-        <p>{{ form.submit() }}</p>
-            <p class="login-link">Don't have an account? <a href="{{ url_for('signup') }}">Sign up here</a></p>
-            <a href="/" class="back-home-mobile">← Back to Home Page</a>
-        </form>
+  <div class="modal-card">
+    <!-- Left: image/text -->
+    <div class="modal-card-image">
+      <div class="overlay-text">
+        <h1 class="modal-h1">Welcome Back!</h1>
+        <p>Login to continue your journey!</p>
       </div>
     </div>
+
+    <!-- Right: form -->
+    <div class="modal-card-form">
+      <h2>Login</h2>
+      <br />
+
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %}
+      <div class="flash-container">
+        {% for category, message in messages %}
+        <div class="flash-message {{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+
+      <form id="loginForm" action="/login" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+          {{ form.username.label }}<br />
+          {{ form.username(size=64, placeholder="Enter your username") }}<br />
+          {% for error in form.username.errors %}
+          <span style="color: red">[{{ error }}]</span>
+          {% endfor %}
+        </p>
+        <p>
+          {{ form.password.label }}<br />
+          {{ form.password(size=64, placeholder="Enter your password") }}<br />
+          {% for error in form.password.errors %}
+          <span style="color: red">[{{ error }}]</span>
+          {% endfor %}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <br />
+        <p>{{ form.submit() }}</p>
+        <p class="login-link">Don't have an account? <a href="{{ url_for('signup') }}">Sign up here</a></p>
+        <a href="/" class="back-home-mobile">← Back to Home Page</a>
+      </form>
+    </div>
   </div>
-  
+</div>
+
 {% endblock %}

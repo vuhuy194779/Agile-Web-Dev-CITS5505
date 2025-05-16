@@ -65,6 +65,14 @@ class Workout(db.Model):
         if date_obj > datetime.now():
             raise ValueError("Workout date cannot be in the future.")
         return date_obj
+    
+    def seconds_to_hms(seconds):
+        if seconds is None or seconds == 0:
+            return "00:00:00"
+        hours = seconds // 3600
+        minutes = (seconds % 3600) // 60
+        secs = seconds % 60
+        return f"{int(hours):02d}:{int(minutes):02d}:{int(secs):02d}"
 
 @event.listens_for(Workout, 'before_insert')
 def validate_workout(mapper, connection, target):
@@ -78,3 +86,13 @@ def validate_workout(mapper, connection, target):
         raise ValueError("Distance must be positive.")
     if target.sport not in ['Swimming', 'Cycling', 'Running']:
         raise ValueError("Sport must be Swimming, Cycling, or Running.")
+
+class Share(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    from_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    to_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    workout_id = db.Column(db.Integer, db.ForeignKey('workout.id'), nullable=False)
+
+    __table_args__ = (
+        db.UniqueConstraint('from_user_id', 'to_user_id', 'workout_id', name='unique_share'),
+    )

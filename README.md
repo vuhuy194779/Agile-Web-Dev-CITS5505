@@ -2,6 +2,10 @@
 
 ## Project Purpose
 
+The purpose of this project is to develop a comprehensive and user-friendly application that enables triathlon athletes to track, monitor, and analyze their performance across swimming, cycling, and running. By offering functionalities such as data upload (both manually and via CSV files), share and interactive dashboards, the application aims to simplify the process of managing triathlon training data. Users can effortlessly record their heart rate, distance, date, and time for each activity, with the flexibility to select multiple activities for a single date entry.
+
+In addition to data logging, the application provides a calendar view to highlight current and past training sessions, offering athletes clear visibility into their workout history. A dedicated dashboard visualizes performance metrics, allowing users to track progress over time, identify trends, and make data-driven adjustments to their training routines. Through this application, triathlon athletes can enhance their preparation, optimize their training strategy, and achieve their endurance goals more effectively.
+
 ### What is a Triathlon?
 
 A triathlon is a multi-discipline endurance race consisting of swimming, cycling, and running performed in immediate succession. The most recognized formats include:
@@ -24,13 +28,57 @@ Each distance typically has a cut-off time. For full Ironman races, athletes mus
 
 ## Instruction
 
+You must have installed Python version >= 3.9
+
 In the terminal, run the following command
 
 ```
 cd web
+```
+
+Then for windows users run
+
+```
+py -3 -m venv .venv
+.venv/Scripts/activate
+```
+
+Or if you're a Mac/Linux user
+
+```
+python3 -m venv .venv
+.venv/bin/activate
+```
+
+And follow these command to open the application
+
+```
 pip install -r requirements.txt
 flask db upgrade
 flask run
 ```
 
 ## Test
+
+In your terminal with the enviroment activated run unittest with
+
+```
+python -m test.unittest
+```
+
+For selenium, you need to have flask application running and in another terminal run
+
+```
+python -m test.selenium
+
+```
+
+References:
+ 
+OpenAI. (2025).ChatGTP(May 10 free version) [Large language model]. https://chat.openai.com/chat
+ 
+GitHub. (2025). GitHub Copilot [Software]. https://copilot.github.com
+
+
+(Using Copilot inline chat/tab for assistance, such as class naming and CSS recommendations.)
+(Using ChatGPT for process guidance—like identifying which parts to complete first to avoid conflicts and how to resolve them—as well as for troubleshooting smaller issues, such as terminal errors, migration problems that may require downgrading, or installing dependencies.)
