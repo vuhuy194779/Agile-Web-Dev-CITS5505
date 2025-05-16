@@ -44,6 +44,8 @@ python3 -m venv .venv
 .venv/bin/activate
 ```
 
+If you are unable to activate the virtual environment, try switching between forward slashes (/) and backslashes (\\) in the path.
+
 And follow these command to open the application
 
 ```
