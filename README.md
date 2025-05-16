@@ -72,3 +72,13 @@ For selenium, you need to have flask application running and in another terminal
 python -m test.selenium
 
 ```
+
+References:
+ 
+OpenAI. (2025).ChatGTP(May 10 free version) [Large language model]. https://chat.openai.com/chat
+ 
+GitHub. (2025). GitHub Copilot [Software]. https://copilot.github.com
+
+
+(Using Copilot inline chat/tab for assistance, such as class naming and CSS recommendations.)
+(Using ChatGPT for process guidance—like identifying which parts to complete first to avoid conflicts and how to resolve them—as well as for troubleshooting smaller issues, such as terminal errors, migration problems that may require downgrading, or installing dependencies.)
