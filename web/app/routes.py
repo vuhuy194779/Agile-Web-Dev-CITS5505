@@ -104,6 +104,10 @@ def upload_csv():
     if not files or all(file.filename == '' for file in files):
         return jsonify({'error': 'Please select at least one CSV file.'}), 400
 
+    for file in files:
+        if not (file and file.filename.endswith('.csv')):
+            return jsonify({'error': 'All uploaded files must be CSV files ending with .csv.'}), 400
+
     try:
         for file in files:
             if file and file.filename.endswith('.csv'):
